@@ -5,13 +5,13 @@
   <text x="25" y="88" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">⭐  Total Stars</text>
   <text x="235" y="88" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">18</text>
   <text x="25" y="125" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">💬  Total Commits</text>
-  <text x="235" y="125" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">253</text>
+  <text x="235" y="125" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">147</text>
   <text x="25" y="162" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">📦  Total Repos</text>
   <text x="235" y="162" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">16</text>
   <text x="265" y="88" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">👥  Followers</text>
   <text x="470" y="88" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">0</text>
   <text x="265" y="125" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">🔀  Total PRs</text>
-  <text x="470" y="125" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">5</text>
+  <text x="470" y="125" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">4</text>
   <text x="265" y="162" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">📋  Total Issues</text>
   <text x="470" y="162" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">3</text>
 </svg>
