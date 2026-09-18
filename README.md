@@ -49,7 +49,7 @@
 <div align="center">
   <a href="https://skillicons.dev">
     <picture>
-      <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,jupyter,sqlite,git,github,githubactions,linux,vscode,bash&perline=12&theme=light">
+      <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=python%2Cpytorch%2Ctensorflow%2Cscikitlearn%2Cjupyter%2Csqlite%2Cgit%2Cgithub%2Cgithubactions%2Clinux%2Cvscode%2Cbash&perline=12&theme=light">
       <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,jupyter,sqlite,git,github,githubactions,linux,vscode,bash&perline=12&theme=dark" alt="Skills">
     </picture>
   </a>
