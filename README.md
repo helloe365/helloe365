@@ -11,7 +11,9 @@
 </p>
 
 <!--   my-ticker   -->
+<p align="center">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1200&color=00BFFF&center=true&vCenter=true&width=650&lines=Hi+there+%F0%9F%91%8B%2C+I+am+hello2world;Welcome+to+My+Profile!;%E4%B8%93%E6%B3%A8%E4%BA%8E+AI+%2F+%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0+%2F+LLM+%E5%BA%94%E7%94%A8;Python+%E6%B7%B1%E5%BA%A6%E7%88%B1%E5%A5%BD%E8%80%85+%F0%9F%90%8D;%E7%83%AD%E7%88%B1%E5%BC%80%E6%BA%90+%E2%9C%A8+%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E4%B8%AD...%F0%9F%8C%9F" alt="Typing SVG"></a>
+</p>
 
 ---
 
@@ -23,7 +25,7 @@
 
 <img src="https://github.com/helloe365.png" width="200">
 
-**「 Stay hungry, Stay foolish. 」**
+<p align="center"><strong>「 Stay hungry, Stay foolish. 」</strong></p>
 
 </td>
 <td width="65%">
