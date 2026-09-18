@@ -137,11 +137,11 @@ graph TD;
 
 <p align="center">
   <a href="https://www.openstreetmap.org/?mlat=28.024557&mlon=112.937019#map=15/28.024557/112.937019">
-    <img src="./assets/location-map.png" alt="My Location - 湖南大学科创港校区" width="100%">
+    <img src="./assets/location-map.png" alt="My Location - Hunan University (Sci-Tech Innovation Port Campus)" width="100%">
   </a>
 </p>
 
-<p align="center"><strong>湖南大学科创港校区</strong> · 28.024557°N, 112.937019°E</p>
+<p align="center"><strong>Hunan University (Sci-Tech Innovation Port Campus)</strong> · 28.024557°N, 112.937019°E</p>
 
 ---
 
