@@ -139,15 +139,12 @@ graph TD;
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "name": "湖南大学科创港校区"
+      },
       "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [100.0, 35.0],
-            [123.0, 35.0]
-          ]
-        ]
+        "type": "Point",
+        "coordinates": [112.937019, 28.024557]
       }
     }
   ]
