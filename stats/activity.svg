@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="240" viewBox="0 0 850 240" font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif">
+  <rect width="850" height="240" rx="10" fill="#1a1b27" stroke="#1a1b27"/>
+  <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7aa2f7" stop-opacity="0.35"/><stop offset="100%" stop-color="#7aa2f7" stop-opacity="0.02"/></linearGradient></defs>
+  <text x="25" y="38" font-size="18" fill="#c0caf5" font-weight="600" text-anchor="start">Contribution Activity</text>
+  <text x="830" y="38" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="end">167 contributions in the last year</text>
+  <line x1="0" y1="52" x2="850" y2="52" stroke="#565f89" stroke-opacity="0.4"/>
+  <line x1="48" y1="190.0" x2="830" y2="190.0" stroke="#565f89" stroke-opacity="0.25"/>
+  <text x="40" y="194" font-size="11" fill="#565f89" font-weight="normal" text-anchor="end">0</text>
+  <line x1="48" y1="149.3" x2="830" y2="149.3" stroke="#565f89" stroke-opacity="0.25"/>
+  <text x="40" y="153.33333333333334" font-size="11" fill="#565f89" font-weight="normal" text-anchor="end">20</text>
+  <line x1="48" y1="108.7" x2="830" y2="108.7" stroke="#565f89" stroke-opacity="0.25"/>
+  <text x="40" y="112.66666666666667" font-size="11" fill="#565f89" font-weight="normal" text-anchor="end">40</text>
+  <line x1="48" y1="68.0" x2="830" y2="68.0" stroke="#565f89" stroke-opacity="0.25"/>
+  <text x="40" y="72" font-size="11" fill="#565f89" font-weight="normal" text-anchor="end">60</text>
+  <path d="M 48.0,190.0 L 63.0,190.0 L 78.1,190.0 L 93.1,190.0 L 108.2,190.0 L 123.2,190.0 L 138.2,190.0 L 153.3,190.0 L 168.3,190.0 L 183.3,190.0 L 198.4,190.0 L 213.4,190.0 L 228.5,190.0 L 243.5,190.0 L 258.5,190.0 L 273.6,190.0 L 288.6,190.0 L 303.7,190.0 L 318.7,190.0 L 333.7,190.0 L 348.8,190.0 L 363.8,185.9 L 378.8,190.0 L 393.9,157.5 L 408.9,185.9 L 424.0,190.0 L 439.0,171.7 L 454.0,163.6 L 469.1,190.0 L 484.1,190.0 L 499.2,183.9 L 514.2,147.3 L 529.2,190.0 L 544.3,183.9 L 559.3,155.4 L 574.3,179.8 L 589.4,190.0 L 604.4,190.0 L 619.5,190.0 L 634.5,190.0 L 649.5,190.0 L 664.6,190.0 L 679.6,188.0 L 694.7,188.0 L 709.7,188.0 L 724.7,190.0 L 739.8,190.0 L 754.8,190.0 L 769.8,88.3 L 784.9,165.6 L 799.9,190.0 L 815.0,188.0 L 830.0,169.7 L 830.0,190 L 48.0,190 Z" fill="url(#fade)"/>
+  <path d="M 48.0,190.0 L 63.0,190.0 L 78.1,190.0 L 93.1,190.0 L 108.2,190.0 L 123.2,190.0 L 138.2,190.0 L 153.3,190.0 L 168.3,190.0 L 183.3,190.0 L 198.4,190.0 L 213.4,190.0 L 228.5,190.0 L 243.5,190.0 L 258.5,190.0 L 273.6,190.0 L 288.6,190.0 L 303.7,190.0 L 318.7,190.0 L 333.7,190.0 L 348.8,190.0 L 363.8,185.9 L 378.8,190.0 L 393.9,157.5 L 408.9,185.9 L 424.0,190.0 L 439.0,171.7 L 454.0,163.6 L 469.1,190.0 L 484.1,190.0 L 499.2,183.9 L 514.2,147.3 L 529.2,190.0 L 544.3,183.9 L 559.3,155.4 L 574.3,179.8 L 589.4,190.0 L 604.4,190.0 L 619.5,190.0 L 634.5,190.0 L 649.5,190.0 L 664.6,190.0 L 679.6,188.0 L 694.7,188.0 L 709.7,188.0 L 724.7,190.0 L 739.8,190.0 L 754.8,190.0 L 769.8,88.3 L 784.9,165.6 L 799.9,190.0 L 815.0,188.0 L 830.0,169.7" fill="none" stroke="#7aa2f7" stroke-width="2" stroke-linejoin="round"/>
+  <text x="48.0" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="start">Sep</text>
+  <text x="93.11538461538461" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Oct</text>
+  <text x="153.26923076923077" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Nov</text>
+  <text x="228.46153846153848" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Dec</text>
+  <text x="288.61538461538464" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Jan</text>
+  <text x="348.7692307692308" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Feb</text>
+  <text x="408.92307692307696" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Mar</text>
+  <text x="484.11538461538464" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Apr</text>
+  <text x="544.2692307692307" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">May</text>
+  <text x="619.4615384615385" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Jun</text>
+  <text x="679.6153846153846" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Jul</text>
+  <text x="739.7692307692307" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Aug</text>
+  <text x="814.9615384615385" y="228" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Sep</text>
+</svg>

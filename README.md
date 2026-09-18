@@ -1,13 +1,12 @@
 <!--  GitHub Profile README — 风格参考 github.com/BEPb/BEPb  -->
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00BFFF,50:7B68EE,100:9370DB&height=220&section=header&text=hello%5F2world&fontSize=60&fontAlignY=33&desc=Welcome%20to%20my%20GitHub%20Profile!&descAlignY=54&descSize=18&fontColor=ffffff&animation=fadeIn" width="100%">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00BFFF,50:7B68EE,100:9370DB&height=220&section=header&text=hello2world&fontSize=60&fontAlignY=33&desc=Welcome%20to%20my%20GitHub%20Profile!&descAlignY=54&descSize=18&fontColor=ffffff&animation=fadeIn" width="100%">
 
 <!--   my-icons   -->
 <p align="center">
     <a href="https://github.com/helloe365"><img src="https://img.shields.io/badge/status-updating-brightgreen.svg"></a>
     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-FFD43B.svg?logo=python&logoColor=blue"></a>
     <a href="https://github.com/helloe365?tab=repositories"><img src="https://img.shields.io/github/repos/helloe365?style=flat-square&label=public%20repos"></a>
-    <img src="https://komarev.com/ghpvc/?username=helloe365&color=blue&style=flat-square&label=VISITORS">
 </p>
 
 <!--   my-ticker   -->
@@ -36,7 +35,7 @@
 🌱  Learning   →  RAG · Agent · 深度学习
 🛡   Interest   →  数据安全与隐私保护
 💬  Ask me     →  Python · LangChain · PyTorch
-📫  Email      →  helloe2718@gmail.com
+📍  Location   →  Hunan University · Changsha
 ```
 
 </td>
@@ -48,9 +47,12 @@
 ## 🛠️ 技术栈 | Tech Stack
 
 <div align="center">
-
-[![Skills](https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,jupyter,sqlite,git,github,githubactions,linux,vscode,bash&perline=12)](https://skillicons.dev)
-
+  <a href="https://skillicons.dev">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,jupyter,sqlite,git,github,githubactions,linux,vscode,bash&perline=12&theme=light">
+      <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,jupyter,sqlite,git,github,githubactions,linux,vscode,bash&perline=12&theme=dark" alt="Skills">
+    </picture>
+  </a>
 </div>
 
 | 分类 | 技术 |
@@ -66,26 +68,75 @@
 
 ## 🚀 精选项目 | Featured Projects
 
-<p>
-  <a href="https://github.com/helloe365/CrackPDFPassword"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=CrackPDFPassword&theme=tokyonight&show_owner=false&v=2" alt="CrackPDFPassword"></a>
-  <a href="https://github.com/helloe365/RagAgent"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=RagAgent&theme=tokyonight&show_owner=false&v=2" alt="RagAgent"></a>
+<p align="center">
+  <a href="https://github.com/helloe365/CrackPDFPassword">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="./stats/pin-CrackPDFPassword-light.svg">
+      <img width="49%" src="./stats/pin-CrackPDFPassword.svg" alt="CrackPDFPassword">
+    </picture>
+  </a>
+  <a href="https://github.com/helloe365/RagAgent">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="./stats/pin-RagAgent-light.svg">
+      <img width="49%" src="./stats/pin-RagAgent.svg" alt="RagAgent">
+    </picture>
+  </a>
 </p>
-<p>
-  <a href="https://github.com/helloe365/AdaptiveFinancialFraudDetectionSystem"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=AdaptiveFinancialFraudDetectionSystem&theme=tokyonight&show_owner=false&v=2" alt="AdaptiveFinancialFraudDetectionSystem"></a>
-  <a href="https://github.com/helloe365/BigDataSecurityPrivacyInclude"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=BigDataSecurityPrivacyInclude&theme=tokyonight&show_owner=false&v=2" alt="BigDataSecurityPrivacyInclude"></a>
+<p align="center">
+  <a href="https://github.com/helloe365/AdaptiveFinancialFraudDetectionSystem">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="./stats/pin-AdaptiveFinancialFraudDetectionSystem-light.svg">
+      <img width="49%" src="./stats/pin-AdaptiveFinancialFraudDetectionSystem.svg" alt="AdaptiveFinancialFraudDetectionSystem">
+    </picture>
+  </a>
+  <a href="https://github.com/helloe365/BigDataSecurityPrivacyInclude">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="./stats/pin-BigDataSecurityPrivacyInclude-light.svg">
+      <img width="49%" src="./stats/pin-BigDataSecurityPrivacyInclude.svg" alt="BigDataSecurityPrivacyInclude">
+    </picture>
+  </a>
 </p>
+
+*项目卡片由 GitHub Actions 每天自动重新生成 🔄*
 
 ---
 
 ## 📊 GitHub 统计 | GitHub Stats
 
-<p>
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=helloe365&show_icons=true&theme=tokyonight&include_all_commits=true&v=2" alt="helloe365's github stats">
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=helloe365&layout=donut-vertical&theme=tokyonight&langs_count=8&v=2" alt="Top Langs">
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="./stats/stats-light.svg">
+    <img height="165" src="./stats/stats.svg" alt="helloe365's github stats">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="./stats/top-langs-light.svg">
+    <img height="165" src="./stats/top-langs.svg" alt="Top Langs">
+  </picture>
 </p>
 
-<p>
-  <img width="62%" src="https://streak-stats.demolab.com?user=helloe365&theme=tokyonight" alt="GitHub Streak">
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=helloe365&theme=default">
+    <img width="62%" src="https://streak-stats.demolab.com?user=helloe365&theme=tokyonight" alt="GitHub Streak">
+  </picture>
+</p>
+
+### 📈 贡献活跃度 | Contribution Activity
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="./stats/activity-light.svg">
+    <img width="100%" src="./stats/activity.svg" alt="Contribution Activity">
+  </picture>
+</p>
+
+### 🏆 个人奖杯 | Trophies
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="./stats/trophies-light.svg">
+    <img width="100%" src="./stats/trophies.svg" alt="Trophies">
+  </picture>
 </p>
 
 ## 🐍 贪吃蛇吃掉我的贡献格 | Contribution Snake
@@ -128,20 +179,12 @@ graph TD;
 
 ## 📫 联系我 | Reach Me
 
-<p>
-  <a href="mailto:helloe2718@gmail.com"><img src="https://img.shields.io/badge/Gmail-helloe2718@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
+<p align="center">
+  <a href="mailto:helloe2718@gmail.com"><img src="https://img.shields.io/badge/Gmail-Contact%20Me-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
   <a href="https://github.com/helloe365"><img src="https://img.shields.io/badge/GitHub-@helloe365-181717?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
-### 📍 My Location
-
-<p align="center">
-  <a href="https://www.openstreetmap.org/?mlat=28.024557&mlon=112.937019#map=15/28.024557/112.937019">
-    <img src="./assets/location-map.png" alt="My Location - Hunan University (Sci-Tech Innovation Port Campus)" width="100%">
-  </a>
-</p>
-
-<p align="center"><strong>Hunan University (Sci-Tech Innovation Port Campus)</strong> · 28.024557°N, 112.937019°E</p>
+<p align="center">📍 <strong>Hunan University (Sci-Tech Innovation Port Campus)</strong> · Changsha, China</p>
 
 ---
 

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif">
+  <rect width="495" height="195" rx="10" fill="#1a1b27" stroke="#1a1b27"/>
+  <text x="25" y="38" font-size="18" fill="#c0caf5" font-weight="600" text-anchor="start">helloe365's GitHub Stats</text>
+  <line x1="0" y1="52" x2="495" y2="52" stroke="#565f89" stroke-opacity="0.4"/>
+  <text x="25" y="88" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">⭐  Total Stars</text>
+  <text x="235" y="88" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">18</text>
+  <text x="25" y="125" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">💬  Total Commits</text>
+  <text x="235" y="125" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">253</text>
+  <text x="25" y="162" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">📦  Total Repos</text>
+  <text x="235" y="162" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">16</text>
+  <text x="265" y="88" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">👥  Followers</text>
+  <text x="470" y="88" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">0</text>
+  <text x="265" y="125" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">🔀  Total PRs</text>
+  <text x="470" y="125" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">5</text>
+  <text x="265" y="162" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">📋  Total Issues</text>
+  <text x="470" y="162" font-size="15" fill="#c0caf5" font-weight="600" text-anchor="end">3</text>
+</svg>

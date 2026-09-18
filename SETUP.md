@@ -45,7 +45,7 @@ git push -u origin main
 ## 个性化修改
 
 - **打字机文案**：修改 README 顶部 `readme-typing-svg.demolab.com` 链接中的 `lines=` 参数，多行用 `;` 分隔，中文需 URL 编码
-- **配色主题**：所有统计卡片统一使用 `tokyonight` 主题，可全局替换为 `radical`、`dracula`、`synthwave` 等（见 [github-readme-stats 主题列表](https://github.com/anuraghazra/github-readme-stats#themes)）
+- **统计卡片**：所有统计/语言/项目卡片均为本地 SVG（`stats/` 目录），由 `scripts/generate_stats.py` 生成 dark（tokyonight）+ light 双主题，配色修改脚本中的 `THEMES` 字典即可
 - **头部波浪**：修改 `capsule-render.vercel.app` 链接中的 `color=0:xxx,50:xxx,100:xxx` 渐变色（十六进制）
 - **技能徽章**：直接增删技术栈表格中的 shields.io 徽章，或修改 `skillicons.dev` 链接的 `i=` 参数
 - **精选项目**：替换 pin 卡片的 `repo=` 参数为你想展示的项目
@@ -62,9 +62,9 @@ git push -u origin main
 
 ---
 
-## 🛠 彻底解决统计卡片裂图（自部署方案）
+## 🛠 统计卡片裂图问题（已解决 ✅）
 
-README 中的 `github-readme-stats` 系列卡片依赖他人的公共 Vercel 实例，高峰期会过载（503）、部分实例已永久停摆（402）。**自部署**后使用你自己的免费额度（100GB 流量/月，个人主页绰绰有余），永久稳定：
+> 统计/语言/项目卡片、**贡献活跃度折线图**、**奖杯墙**已全部改为**本地 SVG**（`stats/` 目录，GitHub Actions 每日更新；活跃度图与奖杯通过 GraphQL 生成），不再依赖任何公共实例，裂图问题已根除。
 
 ### 一键部署 github-readme-stats（恢复 Stats / Top Langs / 项目卡片）
 
@@ -74,17 +74,6 @@ README 中的 `github-readme-stats` 系列卡片依赖他人的公共 Vercel 实
 4. 部署完成后拿到形如 `github-readme-stats-xxxx.vercel.app` 的域名
 5. 将本仓库 `README.md` 中的 `github-readme-stats.vercel.app` 全局替换为你的域名，push 即可
 
-### 可选：恢复已移除的活跃度折线图与奖杯
+### 奖杯墙说明（已本地化）
 
-这两个组件因公共实例停摆（402）已从 README 中移除，自部署后可加回：
-
-```markdown
-### 📈 Activity Graph
-<img width="100%" src="https://你的域名/github-readme-activity-graph/graph?username=helloe365&theme=tokyonight&area=true&hide_border=true" alt="activity">
-
-## 🏆 Profile Trophy
-<img src="https://你的域名/github-profile-trophy/?username=helloe365&theme=tokyonight&no-frame=true&no-bg=true&column=7" alt="trophy">
-```
-
-- 活跃度折线图：<https://github.com/Ashutosh00710/github-readme-activity-graph>（Deploy to Vercel 按钮）
-- 个人奖杯：<https://github.com/ryo-ma/github-profile-trophy>（Fork 后在 Vercel 导入部署）
+`stats/trophies.svg` 由 `scripts/generate_stats.py` 生成，等级阈值完整复刻自 [ryo-ma/github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) 的开源源码（`src/trophy.ts`），含 7 个基础奖杯 + 达成才显示的隐藏奖杯（如 Rainbow Lang User、Village Elder）。无需自部署任何服务。

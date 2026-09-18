@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="128" viewBox="0 0 495 128" font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif">
+  <rect width="495" height="128" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+  <text x="25" y="38" font-size="17" fill="#0969da" font-weight="600" text-anchor="start">AdaptiveFinancialFraudDetectionSystem</text>
+  <rect x="338" y="24" width="52" height="18" rx="9" fill="none" stroke="#8c959f"/>
+  <text x="364.4" y="37" font-size="11" fill="#8c959f" font-weight="normal" text-anchor="middle">Public</text>
+  <text x="25" y="68" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">自适应金融诈骗检测系统是一个基于深度学习的智能化金融风控平台，采用最新的DevNet（偏差网络）算法，结合VAE（变分自编码器）数…</text>
+  <circle cx="31" cy="102" r="6" fill="#3572A5"/>
+  <text x="43" y="106" font-size="12" fill="#1f2328" font-weight="normal" text-anchor="start">Python</text>
+  <text x="365" y="106" font-size="12" fill="#59636e" font-weight="normal" text-anchor="start">⭐ 0</text>
+  <text x="435" y="106" font-size="12" fill="#59636e" font-weight="normal" text-anchor="start">🍴 0</text>
+</svg>
