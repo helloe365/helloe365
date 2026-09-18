@@ -58,4 +58,33 @@ git push -u origin main
 - [Platane/snk](https://github.com/Platane/snk) — 贪吃蛇贡献动画
 - [yoshi389111/github-profile-3d-contrib](https://github.com/yoshi389111/github-profile-3d-contrib) — 3D 贡献图
 - [ryo-ma/github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) — 个人奖杯
-- [Ashutosh00710/github-readme-activity-graph](https://github.com/Ashutosh00710/github-readme-activity-graph) — 活跃度折线图
+- [Ashutosh00710/github-readme-activity-graph](https://github.com/Ashutosh00710/github-readme-activity-graph) — 活跃度折线图（公共实例已停摆，可自部署后恢复）
+
+---
+
+## 🛠 彻底解决统计卡片裂图（自部署方案）
+
+README 中的 `github-readme-stats` 系列卡片依赖他人的公共 Vercel 实例，高峰期会过载（503）、部分实例已永久停摆（402）。**自部署**后使用你自己的免费额度（100GB 流量/月，个人主页绰绰有余），永久稳定：
+
+### 一键部署 github-readme-stats（恢复 Stats / Top Langs / 项目卡片）
+
+1. 打开 <https://vercel.com>，用 GitHub 账号登录（免费）
+2. 打开 <https://vercel.com/new/clone?repository-url=https://github.com/anuraghazra/github-readme-stats>
+3. 直接点 **Deploy**（无需任何环境变量）
+4. 部署完成后拿到形如 `github-readme-stats-xxxx.vercel.app` 的域名
+5. 将本仓库 `README.md` 中的 `github-readme-stats.vercel.app` 全局替换为你的域名，push 即可
+
+### 可选：恢复已移除的活跃度折线图与奖杯
+
+这两个组件因公共实例停摆（402）已从 README 中移除，自部署后可加回：
+
+```markdown
+### 📈 Activity Graph
+<img width="100%" src="https://你的域名/github-readme-activity-graph/graph?username=helloe365&theme=tokyonight&area=true&hide_border=true" alt="activity">
+
+## 🏆 Profile Trophy
+<img src="https://你的域名/github-profile-trophy/?username=helloe365&theme=tokyonight&no-frame=true&no-bg=true&column=7" alt="trophy">
+```
+
+- 活跃度折线图：<https://github.com/Ashutosh00710/github-readme-activity-graph>（Deploy to Vercel 按钮）
+- 个人奖杯：<https://github.com/ryo-ma/github-profile-trophy>（Fork 后在 Vercel 导入部署）

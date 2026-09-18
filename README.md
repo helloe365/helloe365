@@ -65,12 +65,12 @@
 ## 🚀 精选项目 | Featured Projects
 
 <p>
-  <a href="https://github.com/helloe365/CrackPDFPassword"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=CrackPDFPassword&theme=tokyonight&show_owner=false" alt="CrackPDFPassword"></a>
-  <a href="https://github.com/helloe365/RagAgent"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=RagAgent&theme=tokyonight&show_owner=false" alt="RagAgent"></a>
+  <a href="https://github.com/helloe365/CrackPDFPassword"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=CrackPDFPassword&theme=tokyonight&show_owner=false&v=2" alt="CrackPDFPassword"></a>
+  <a href="https://github.com/helloe365/RagAgent"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=RagAgent&theme=tokyonight&show_owner=false&v=2" alt="RagAgent"></a>
 </p>
 <p>
-  <a href="https://github.com/helloe365/AdaptiveFinancialFraudDetectionSystem"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=AdaptiveFinancialFraudDetectionSystem&theme=tokyonight&show_owner=false" alt="AdaptiveFinancialFraudDetectionSystem"></a>
-  <a href="https://github.com/helloe365/BigDataSecurityPrivacyInclude"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=BigDataSecurityPrivacyInclude&theme=tokyonight&show_owner=false" alt="BigDataSecurityPrivacyInclude"></a>
+  <a href="https://github.com/helloe365/AdaptiveFinancialFraudDetectionSystem"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=AdaptiveFinancialFraudDetectionSystem&theme=tokyonight&show_owner=false&v=2" alt="AdaptiveFinancialFraudDetectionSystem"></a>
+  <a href="https://github.com/helloe365/BigDataSecurityPrivacyInclude"><img src="https://github-readme-stats.vercel.app/api/pin/?username=helloe365&repo=BigDataSecurityPrivacyInclude&theme=tokyonight&show_owner=false&v=2" alt="BigDataSecurityPrivacyInclude"></a>
 </p>
 
 ---
@@ -78,27 +78,13 @@
 ## 📊 GitHub 统计 | GitHub Stats
 
 <p>
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=helloe365&show_icons=true&theme=tokyonight&include_all_commits=true" alt="helloe365's github stats">
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=helloe365&layout=donut-vertical&theme=tokyonight&langs_count=8" alt="Top Langs">
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=helloe365&show_icons=true&theme=tokyonight&include_all_commits=true&v=2" alt="helloe365's github stats">
+  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=helloe365&layout=donut-vertical&theme=tokyonight&langs_count=8&v=2" alt="Top Langs">
 </p>
 
 <p>
   <img width="62%" src="https://streak-stats.demolab.com?user=helloe365&theme=tokyonight" alt="GitHub Streak">
 </p>
-
-### 📈 Activity Graph
-
-<img width="100%" src="https://github-readme-activity-graph.vercel.app/graph?username=helloe365&theme=tokyonight&area=true&hide_border=true" alt="helloe365's github activity graph">
-
----
-
-## 🏆 Profile Trophy
-
-<p>
-  <img src="https://github-profile-trophy.vercel.app/?username=helloe365&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=6&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C" alt="helloe365's trophy">
-</p>
-
----
 
 ## 🐍 贪吃蛇吃掉我的贡献格 | Contribution Snake
 
@@ -174,7 +160,7 @@ graph TD;
 
 ### ❤️ Thanks for visiting!
 
-<img src="https://visitcount.itsvg.in/api?id=helloe365&label=Profile+Views&color=12&icon=2&pretty=true" alt="Profile Views">
+<img src="https://komarev.com/ghpvc/?username=helloe365&label=PROFILE+VIEWS&color=blueviolet&style=for-the-badge" alt="Profile Views">
 
 *如果喜欢这个主页，欢迎 Star ⭐ 本仓库！*
 
