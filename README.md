@@ -137,7 +137,7 @@ graph TD;
 
 <p align="center">
   <a href="https://www.openstreetmap.org/?mlat=28.024557&mlon=112.937019#map=15/28.024557/112.937019">
-    <img src="https://staticmap.openstreetmap.de/staticmap.php?center=28.024557,112.937019&zoom=15&size=865x512&markers=28.024557,112.937019,red-pushpin" alt="My Location - 湖南大学科创港校区" width="100%">
+    <img src="./assets/location-map.png" alt="My Location - 湖南大学科创港校区" width="100%">
   </a>
 </p>
 
