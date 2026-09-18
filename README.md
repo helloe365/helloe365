@@ -135,23 +135,13 @@ graph TD;
 
 ### 📍 My Location
 
-```geojson
-{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "湖南大学科创港校区"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [112.937019, 28.024557]
-      }
-    }
-  ]
-}
-```
+<p align="center">
+  <a href="https://www.openstreetmap.org/?mlat=28.024557&mlon=112.937019#map=15/28.024557/112.937019">
+    <img src="https://staticmap.openstreetmap.de/staticmap.php?center=28.024557,112.937019&zoom=15&size=865x512&markers=28.024557,112.937019,red-pushpin" alt="My Location - 湖南大学科创港校区" width="100%">
+  </a>
+</p>
+
+<p align="center"><strong>湖南大学科创港校区</strong> · 28.024557°N, 112.937019°E</p>
 
 ---
 
