@@ -24,11 +24,15 @@ from datetime import datetime, timezone
 USER = os.environ.get("GITHUB_USER", "helloe365")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 API = "https://api.github.com"
+# (repo, blurb). The blurb overrides the repo's own description so the cards stay
+# English regardless of the language the repo is documented in. Keep blurbs <= 66
+# chars or trunc() will ellipsize them.
 FEATURED_REPOS = [
-    "CrackPDFPassword",
-    "RagAgent",
-    "AdaptiveFinancialFraudDetectionSystem",
-    "BigDataSecurityPrivacyInclude",
+    ("CrackPDFPassword", "Multi-process CPU + hashcat GPU recovery, fully resumable"),
+    ("CupLens", "Forecasting with versioned models and hashed provenance"),
+    ("RagAgent", "LangChain RAG: ReAct tools, incremental KB, streaming UI"),
+    ("AdaptiveFinancialFraudDetectionSystem",
+     "DevNet deviation network + VAE augmentation for fraud detection"),
 ]
 
 LANG_COLORS = {
@@ -136,14 +140,14 @@ def text(x, y, content, size=13, fill=SUBTLE, weight="normal", anchor="start"):
     )
 
 
-def stats_svg(stars, commits, repos, followers, prs, issues):
+def stats_svg(stars, commits, repos, forks, prs, issues):
     left = [
         ("⭐", "Total Stars", stars, ORANGE),
         ("💬", "Total Commits", commits, CYAN),
         ("📦", "Total Repos", repos, PURPLE),
     ]
     right = [
-        ("👥", "Followers", followers, ACCENT),
+        ("🍴", "Total Forks", forks, ACCENT),
         ("🔀", "Total PRs", prs, GREEN),
         ("📋", "Total Issues", issues, "#f7768e"),
     ]
@@ -199,9 +203,9 @@ def langs_svg(lang_items):
     return svg_wrap(495, 195, "\n".join(body))
 
 
-def pin_svg(repo):
+def pin_svg(repo, blurb=None):
     name = repo["name"]
-    desc = trunc(repo.get("description") or "", 66)
+    desc = trunc(blurb or repo.get("description") or "", 66)
     lang = repo.get("language") or ""
     stars = repo.get("stargazers_count", 0)
     forks = repo.get("forks_count", 0)
@@ -577,7 +581,7 @@ def main():
         use_theme(palette)
         outputs[f"stats/stats{suffix}.svg"] = stats_svg(
             stars, commits, user.get("public_repos", len(owned)),
-            user.get("followers", 0), prs, issues,
+            sum(r.get("forks_count", 0) for r in owned), prs, issues,
         )
         outputs[f"stats/top-langs{suffix}.svg"] = langs_svg(lang_items)
         if weeks:
@@ -585,9 +589,9 @@ def main():
                 total_contribs, weeks)
         if tinfo:
             outputs[f"stats/trophies{suffix}.svg"] = trophies_svg(tinfo)
-        for name in FEATURED_REPOS:
+        for name, blurb in FEATURED_REPOS:
             if name in repo_map:
-                outputs[f"stats/pin-{name}{suffix}.svg"] = pin_svg(repo_map[name])
+                outputs[f"stats/pin-{name}{suffix}.svg"] = pin_svg(repo_map[name], blurb)
             elif not suffix:
                 print(f"WARN: featured repo not found: {name}")
 

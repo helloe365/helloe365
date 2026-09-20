@@ -1,72 +1,31 @@
-<!--  GitHub Profile README — 风格参考 github.com/BEPb/BEPb  -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00BFFF,50:7B68EE,100:9370DB&height=220&section=header&text=hello2world&fontSize=60&fontAlignY=33&desc=Python%20%7C%20AI%20%7C%20LLM%20%7C%20Security&descAlignY=54&descSize=18&fontColor=ffffff&animation=fadeIn" width="100%">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00BFFF,50:7B68EE,100:9370DB&height=220&section=header&text=hello2world&fontSize=60&fontAlignY=33&desc=Welcome%20to%20my%20GitHub%20Profile!&descAlignY=54&descSize=18&fontColor=ffffff&animation=fadeIn" width="100%">
-
-<!--   my-icons   -->
 <p align="center">
-    <a href="https://github.com/helloe365"><img src="https://img.shields.io/badge/status-updating-brightgreen.svg"></a>
-    <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-FFD43B.svg?logo=python&logoColor=blue"></a>
-    <a href="https://github.com/helloe365?tab=repositories"><img src="https://img.shields.io/github/repos/helloe365?style=flat-square&label=public%20repos"></a>
+  <img src="https://img.shields.io/badge/Focus-AI%20%2F%20Machine%20Learning%20%2F%20LLM-7B68EE?style=flat-square&logo=openai&logoColor=white" alt="Focus">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-FFD43B?style=flat-square&logo=python&logoColor=blue" alt="Python">
+  <img src="https://img.shields.io/badge/Learning-RAG%20%C2%B7%20Agent%20%C2%B7%20Deep%20Learning-00BFFF?style=flat-square" alt="Learning">
 </p>
 
-<!--   my-ticker   -->
 <p align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1200&color=00BFFF&center=true&vCenter=true&width=650&lines=Hi+there+%F0%9F%91%8B%2C+I+am+hello2world;Welcome+to+My+Profile!;%E4%B8%93%E6%B3%A8%E4%BA%8E+AI+%2F+%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0+%2F+LLM+%E5%BA%94%E7%94%A8;Python+%E6%B7%B1%E5%BA%A6%E7%88%B1%E5%A5%BD%E8%80%85+%F0%9F%90%8D;%E7%83%AD%E7%88%B1%E5%BC%80%E6%BA%90+%E2%9C%A8+%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E4%B8%AD...%F0%9F%8C%9F" alt="Typing SVG"></a>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=900&center=true&vCenter=true&width=620&lines=Undergraduate+at+Hunan+University%2C+AI+%26+Robotics+School;Building+practical+AI+%E2%80%94+LLM+agents%2C+RAG+systems%2C+security;Founder+of+an+open-source+PDF+password+recovery+tool;Turn+ideas+into+software+that+actually+works+%E2%9C%A8" alt="Typing SVG">
 </p>
 
 ---
 
-## 👨‍💻 关于我 | About Me
+## 👨‍💻 About Me
 
-<table>
-<tr>
-<td width="35%" align="center">
+Python developer focused on **AI / LLM applications** with a side interest in **data security & privacy protection**. I build things end-to-end — models, agents, and the tooling around them.
 
-<img src="https://github.com/helloe365.png" width="200">
-
-<p align="center"><strong>「 Stay hungry, Stay foolish. 」</strong></p>
-
-</td>
-<td width="65%">
-
-```text
-🧑‍💻  Name       →  hello2world
-🔭  Focus      →  AI / 机器学习 / LLM 应用开发
-🌱  Learning   →  RAG · Agent · 深度学习
-🛡   Interest   →  数据安全与隐私保护
-💬  Ask me     →  Python · LangChain · PyTorch
-📍  Location   →  Hunan University · Changsha
-```
-
-</td>
-</tr>
-</table>
+- 🔭 **Currently** — studying at Hunan University, School of Artificial Intelligence & Robotics
+- 🌱 **Learning** — RAG · Agent · Deep Learning (Diffusion Models, VAE)
+- 🛡 **Passionate about** — data security, privacy protection, fraud detection
+- 🏗 **Building** — an open-source PDF password recovery tool that reached **16★ on GitHub**
+- 💬 **Ask me about** — Python · LangChain · PyTorch · Streamlit
+- ⚡ **Motto** — *Stay hungry, Stay foolish.*
 
 ---
 
-## 🛠️ 技术栈 | Tech Stack
-
-<div align="center">
-  <a href="https://skillicons.dev">
-    <picture>
-      <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=python%2Cpytorch%2Ctensorflow%2Cscikitlearn%2Cjupyter%2Csqlite%2Cgit%2Cgithub%2Cgithubactions%2Clinux%2Cvscode%2Cbash&perline=12&theme=light">
-      <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,jupyter,sqlite,git,github,githubactions,linux,vscode,bash&perline=12&theme=dark" alt="Skills">
-    </picture>
-  </a>
-</div>
-
-| 分类 | 技术 |
-|:---|:---|
-| **Languages** | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) ![SQL](https://img.shields.io/badge/-SQL-4479A1?style=flat&logo=mysql&logoColor=white) ![Markdown](https://img.shields.io/badge/-Markdown-2088FF?style=flat&logo=markdown&logoColor=white) ![Bash](https://img.shields.io/badge/-Bash-4EAA25?style=flat&logo=gnubash&logoColor=white) |
-| **AI / Deep Learning** | ![PyTorch](https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white) ![TensorFlow](https://img.shields.io/badge/-TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/-Scikit_Learn-F7931E?style=flat&logo=scikitlearn&logoColor=white) ![Diffusion Models](https://img.shields.io/badge/-Diffusion%20Models-8A2BE2?style=flat) ![VAE](https://img.shields.io/badge/-VAE-9932CC?style=flat) |
-| **LLM / Agent** | ![LangChain](https://img.shields.io/badge/-LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white) ![RAG](https://img.shields.io/badge/-RAG-00BFFF?style=flat) ![ReAct Agent](https://img.shields.io/badge/-ReAct%20Agent-7B68EE?style=flat) ![Prompt Engineering](https://img.shields.io/badge/-Prompt%20Engineering-9370DB?style=flat) ![Streamlit](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white) |
-| **Data** | ![SQLite](https://img.shields.io/badge/-SQLite-003B57?style=flat&logo=sqlite&logoColor=white) ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat&logo=mysql&logoColor=white) ![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/-NumPy-013243?style=flat&logo=numpy&logoColor=white) |
-| **Security** | ![hashcat](https://img.shields.io/badge/-hashcat-3986D7?style=flat&logo=hashcat&logoColor=white) ![Privacy](https://img.shields.io/badge/-%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4-2F4F4F?style=flat) ![Fraud Detection](https://img.shields.io/badge/-%E6%AC%BA%E8%AF%88%E6%A3%80%E6%B5%8B-556B2F?style=flat) |
-| **OS** | ![Windows](https://img.shields.io/badge/-Windows-0078D6?style=flat&logo=windows&logoColor=white) ![Ubuntu](https://img.shields.io/badge/-Ubuntu-E95420?style=flat&logo=ubuntu&logoColor=white) |
-
----
-
-## 🚀 精选项目 | Featured Projects
+## 🚀 Featured Projects
 
 <p align="center">
   <a href="https://github.com/helloe365/CrackPDFPassword">
@@ -75,33 +34,55 @@
       <img width="49%" src="./stats/pin-CrackPDFPassword.svg" alt="CrackPDFPassword">
     </picture>
   </a>
+  <a href="https://github.com/helloe365/CupLens">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="./stats/pin-CupLens-light.svg">
+      <img width="49%" src="./stats/pin-CupLens.svg" alt="CupLens">
+    </picture>
+  </a>
+</p>
+<p align="center">
   <a href="https://github.com/helloe365/RagAgent">
     <picture>
       <source media="(prefers-color-scheme: light)" srcset="./stats/pin-RagAgent-light.svg">
       <img width="49%" src="./stats/pin-RagAgent.svg" alt="RagAgent">
     </picture>
   </a>
-</p>
-<p align="center">
   <a href="https://github.com/helloe365/AdaptiveFinancialFraudDetectionSystem">
     <picture>
       <source media="(prefers-color-scheme: light)" srcset="./stats/pin-AdaptiveFinancialFraudDetectionSystem-light.svg">
       <img width="49%" src="./stats/pin-AdaptiveFinancialFraudDetectionSystem.svg" alt="AdaptiveFinancialFraudDetectionSystem">
     </picture>
   </a>
-  <a href="https://github.com/helloe365/BigDataSecurityPrivacyInclude">
-    <picture>
-      <source media="(prefers-color-scheme: light)" srcset="./stats/pin-BigDataSecurityPrivacyInclude-light.svg">
-      <img width="49%" src="./stats/pin-BigDataSecurityPrivacyInclude.svg" alt="BigDataSecurityPrivacyInclude">
-    </picture>
-  </a>
 </p>
 
-*项目卡片由 GitHub Actions 每天自动重新生成 🔄*
+<p align="center"><sub>Cards auto-regenerate daily via GitHub Actions 🔄</sub></p>
 
 ---
 
-## 📊 GitHub 统计 | GitHub Stats
+## 🛠️ Tech Stack
+
+<div align="center">
+  <a href="https://skillicons.dev">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=python%2Cpytorch%2Ctensorflow%2Csklearn%2Copencv%2Clinux%2Cgit%2Cgithub%2Cgithubactions%2Csqlite%2Cvscode&perline=11&theme=light">
+      <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,sklearn,opencv,linux,git,github,githubactions,sqlite,vscode&perline=11&theme=dark" alt="Skills">
+    </picture>
+  </a>
+</div>
+
+| Area | Tools |
+|:---|:---|
+| **Languages** | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) ![SQL](https://img.shields.io/badge/-SQL-4479A1?style=flat&logo=mysql&logoColor=white) ![Markdown](https://img.shields.io/badge/-Markdown-2088FF?style=flat&logo=markdown&logoColor=white) ![Bash](https://img.shields.io/badge/-Bash-4EAA25?style=flat&logo=gnubash&logoColor=white) |
+| **AI / Deep Learning** | ![PyTorch](https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white) ![TensorFlow](https://img.shields.io/badge/-TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/-Scikit_Learn-F7931E?style=flat&logo=scikitlearn&logoColor=white) ![OpenCV](https://img.shields.io/badge/-OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white) ![Diffusion Models](https://img.shields.io/badge/-Diffusion%20Models-8A2BE2?style=flat) ![VAE](https://img.shields.io/badge/-VAE-9932CC?style=flat) |
+| **LLM / Agent** | ![LangChain](https://img.shields.io/badge/-LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white) ![RAG](https://img.shields.io/badge/-RAG-00BFFF?style=flat) ![ReAct Agent](https://img.shields.io/badge/-ReAct%20Agent-7B68EE?style=flat) ![Prompt Engineering](https://img.shields.io/badge/-Prompt%20Engineering-9370DB?style=flat) ![Streamlit](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white) |
+| **Data** | ![SQLite](https://img.shields.io/badge/-SQLite-003B57?style=flat&logo=sqlite&logoColor=white) ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat&logo=mysql&logoColor=white) ![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/-NumPy-013243?style=flat&logo=numpy&logoColor=white) |
+| **Security** | ![hashcat](https://img.shields.io/badge/-hashcat-3986D7?style=flat&logo=hashcat&logoColor=white) ![Privacy Protection](https://img.shields.io/badge/-Privacy%20Protection-2F4F4F?style=flat) ![Fraud Detection](https://img.shields.io/badge/-Fraud%20Detection-556B2F?style=flat) |
+| **OS / Tools** | ![Windows](https://img.shields.io/badge/-Windows-0078D6?style=flat&logo=windows&logoColor=white) ![Ubuntu](https://img.shields.io/badge/-Ubuntu-E95420?style=flat&logo=ubuntu&logoColor=white) |
+
+---
+
+## 📊 GitHub Stats
 
 <p align="center">
   <picture>
@@ -110,36 +91,11 @@
   </picture>
   <picture>
     <source media="(prefers-color-scheme: light)" srcset="./stats/top-langs-light.svg">
-    <img height="165" src="./stats/top-langs.svg" alt="Top Langs">
+    <img height="165" src="./stats/top-langs.svg" alt="Top Languages">
   </picture>
 </p>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=helloe365&theme=default">
-    <img width="62%" src="https://streak-stats.demolab.com?user=helloe365&theme=tokyonight" alt="GitHub Streak">
-  </picture>
-</p>
-
-### 📈 贡献活跃度 | Contribution Activity
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="./stats/activity-light.svg">
-    <img width="100%" src="./stats/activity.svg" alt="Contribution Activity">
-  </picture>
-</p>
-
-### 🏆 个人奖杯 | Trophies
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="./stats/trophies-light.svg">
-    <img width="100%" src="./stats/trophies.svg" alt="Trophies">
-  </picture>
-</p>
-
-## 🐍 贪吃蛇吃掉我的贡献格 | Contribution Snake
+### 🐍 Contribution Snake
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/helloe365/helloe365/output/github-contribution-grid-snake-dark.svg">
@@ -147,44 +103,18 @@
   <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/helloe365/helloe365/output/github-contribution-grid-snake.svg">
 </picture>
 
-*由 GitHub Actions 每天自动重新生成 🔄*
-
-## 🧊 3D 贡献图 | 3D Contributions
-
-![](./profile-3d-contrib/profile-green-animate.svg)
-
-*同样由 GitHub Actions 自动生成 🔄*
+*Animated daily by GitHub Actions 🔄*
 
 ---
 
-## 🧠 技术图谱 | Knowledge Map
-
-```mermaid
-graph TD;
-    hello2world-->AI-ML;
-    hello2world-->LLM-Agent;
-    hello2world-->Security;
-    AI-ML-->PyTorch;
-    AI-ML-->Diffusion-Model;
-    AI-ML-->VAE-Ensemble;
-    LLM-Agent-->LangChain-RAG;
-    LLM-Agent-->ReAct-Agent;
-    LLM-Agent-->Prompt-Engineering;
-    Security-->Privacy-Protect;
-    Security-->Password-Recovery;
-    Security-->Fraud-Detection;
-```
-
----
-
-## 📫 联系我 | Reach Me
+## 📫 Contact Me
 
 <p align="center">
   <a href="mailto:helloe2718@gmail.com"><img src="https://img.shields.io/badge/Gmail-Contact%20Me-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
   <a href="https://github.com/helloe365"><img src="https://img.shields.io/badge/GitHub-@helloe365-181717?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
-<p align="center">📍 <strong>Hunan University (Sci-Tech Innovation Port Campus)</strong> · Changsha, China</p>
+<p align="center">📍 Hunan University (Sci-Tech Innovation Port Campus) · Changsha, China</p>
 
 ---
 
@@ -192,9 +122,7 @@ graph TD;
 
 ### ❤️ Thanks for visiting!
 
-<img src="https://komarev.com/ghpvc/?username=helloe365&label=PROFILE+VIEWS&color=blueviolet&style=for-the-badge" alt="Profile Views">
-
-*如果喜欢这个主页，欢迎 Star ⭐ 本仓库！*
+<sub>If you like this profile, a ⭐ on this repo means a lot!</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:9370DB,50:7B68EE,100:00BFFF&height=120&section=footer" width="100%">
 

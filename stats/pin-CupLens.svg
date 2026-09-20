@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="495" height="128" viewBox="0 0 495 128" font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif">
   <rect width="495" height="128" rx="10" fill="#1a1b27" stroke="#1a1b27"/>
-  <text x="25" y="38" font-size="17" fill="#7aa2f7" font-weight="600" text-anchor="start">AdaptiveFinancialFraudDetectionSystem</text>
-  <rect x="338" y="24" width="52" height="18" rx="9" fill="none" stroke="#565f89"/>
-  <text x="364.4" y="37" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Public</text>
-  <text x="25" y="68" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">DevNet deviation network + VAE augmentation for fraud detection</text>
+  <text x="25" y="38" font-size="17" fill="#7aa2f7" font-weight="600" text-anchor="start">CupLens</text>
+  <rect x="92" y="24" width="52" height="18" rx="9" fill="none" stroke="#565f89"/>
+  <text x="118.39999999999999" y="37" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">Public</text>
+  <text x="25" y="68" font-size="13" fill="#9aa5ce" font-weight="normal" text-anchor="start">Forecasting with versioned models and hashed provenance</text>
   <circle cx="31" cy="102" r="6" fill="#3572A5"/>
   <text x="43" y="106" font-size="12" fill="#c0caf5" font-weight="normal" text-anchor="start">Python</text>
   <text x="365" y="106" font-size="12" fill="#9aa5ce" font-weight="normal" text-anchor="start">⭐ 0</text>
