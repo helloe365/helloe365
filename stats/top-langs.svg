@@ -2,13 +2,13 @@
   <rect width="495" height="195" rx="10" fill="#1a1b27" stroke="#1a1b27"/>
   <text x="25" y="38" font-size="18" fill="#c0caf5" font-weight="600" text-anchor="start">Most Used Languages</text>
   <line x1="0" y1="52" x2="495" y2="52" stroke="#565f89" stroke-opacity="0.4"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#3572A5" stroke-width="24" stroke-dasharray="275.07 51.66" stroke-dashoffset="-0.00" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#3178c6" stroke-width="24" stroke-dasharray="19.22 307.51" stroke-dashoffset="-275.07" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#e34c26" stroke-width="24" stroke-dasharray="11.80 314.92" stroke-dashoffset="-294.29" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#563d7c" stroke-width="24" stroke-dasharray="8.11 318.62" stroke-dashoffset="-306.09" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#f1e05a" stroke-width="24" stroke-dasharray="3.91 322.82" stroke-dashoffset="-314.20" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#012456" stroke-width="24" stroke-dasharray="3.10 323.63" stroke-dashoffset="-318.11" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#7aa2f7" stroke-width="24" stroke-dasharray="5.52 321.20" stroke-dashoffset="-321.20" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#3572A5" stroke-width="24" stroke-dasharray="275.17 51.55" stroke-dashoffset="-0.00" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#3178c6" stroke-width="24" stroke-dasharray="19.18 307.55" stroke-dashoffset="-275.17" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#e34c26" stroke-width="24" stroke-dasharray="11.78 314.95" stroke-dashoffset="-294.35" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#563d7c" stroke-width="24" stroke-dasharray="8.09 318.63" stroke-dashoffset="-306.13" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#f1e05a" stroke-width="24" stroke-dasharray="3.90 322.82" stroke-dashoffset="-314.22" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#012456" stroke-width="24" stroke-dasharray="3.09 323.64" stroke-dashoffset="-318.12" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#7aa2f7" stroke-width="24" stroke-dasharray="5.51 321.21" stroke-dashoffset="-321.21" transform="rotate(-90 150 118)"/>
   <text x="150" y="116" font-size="26" fill="#c0caf5" font-weight="700" text-anchor="middle">6</text>
   <text x="150" y="138" font-size="11" fill="#565f89" font-weight="normal" text-anchor="middle">languages</text>
   <rect x="255" y="67" width="12" height="12" rx="3" fill="#3572A5"/>
