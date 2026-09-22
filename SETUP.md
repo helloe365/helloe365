@@ -57,7 +57,7 @@ python scripts/check_links.py       # 确认 README 里每张图都能渲染
 
 - **头图文案**：改脚本里的 `HERO_CMD` / `HERO_TITLE` / `HERO_TAG`
 - **终端卡内容**：改脚本里的 `SESSION` 列表，`True` 为逐字打出的命令行，`False` 为整行弹出的输出
-- **轮换座右铭**：改脚本里的 `MOTTOS` 列表（终端卡 `echo $MOTTO` 的输出）。每轮 20 秒循环展示一条，逐字打出后保持到本轮结束，下一轮自动换下一条；条数不限，中英文均可
+- **轮换座右铭**：改脚本里的 `MOTTOS` 列表（终端卡 `echo $MOTTO` 的输出）。每轮 7 秒循环展示一条，逐字打出后保持到本轮结束，下一轮自动换下一条；条数不限，中英文均可
 - **配色**：改脚本顶部的 `THEMES` 字典（`""` 为暗色 tokyonight，`"-light"` 为亮色），两套主题同源生成，不会跑偏
 - **统计卡片**：均为本地 SVG（`stats/` 目录），由 `scripts/generate_stats.py` 生成 dark + light 双主题
 - **技能徽章**：直接增删技术栈表格中的 shields.io 徽章，或修改 `skillicons.dev` 链接的 `i=` 参数

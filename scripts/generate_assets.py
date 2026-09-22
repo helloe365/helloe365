@@ -266,7 +266,7 @@ SESSION = [
     ("echo $MOTTO", "cmd", True),
 ]
 
-# `echo $MOTTO` output rotates one phrase per loop (20s each), typed out
+# `echo $MOTTO` output rotates one phrase per loop (7s each), typed out
 # character by character just like the other output lines.
 MOTTOS = [
     '"Stay hungry, Stay foolish."',
@@ -279,7 +279,7 @@ def terminal_svg(t):
     size, lh, bar = 17, 31, 42
     x0, y0 = 34, 82
     H = y0 + (len(SESSION) + 1) * lh + 26  # +1 line: the rotating motto
-    total = 20.0
+    total = 7.0
     defs = [glow_filter("tglow", 6)]
     body = [
         f'  <rect width="{W}" height="{H}" rx="12" fill="{t["PANEL"]}"/>',
@@ -292,26 +292,26 @@ def terminal_svg(t):
                 f'font-size="13" fill="{t["MUTED"]}" text-anchor="middle">'
                 f'helloe365 — zsh — 96×24</text>')
 
-    at = 0.5
+    at = 0.3
     for i, (line, key, is_cmd) in enumerate(SESSION):
         y = y0 + i * lh
         if is_cmd:
             body.append(appear(x0, y, "❯", size, t["GREEN"], at, total, weight="700"))
             d, b = typed(f"tl{i}", x0 + 2 * size * CW, y, line, size, t["TITLE"],
-                         at + 0.15, total, 26)
+                         at + 0.1, total, 34)
             defs.append(d)
             body.append(b)
-            at += 0.35 + len(line) / 26
+            at += 0.2 + len(line) / 34
         else:
             body.append(appear(x0, y, line, size, t[key], at, total))
-            at += 0.55
+            at += 0.4
     # rotating motto — one phrase per loop, typed like a normal output line
     y = y0 + len(SESSION) * lh
     d, b = rotating_typed("tmotto", x0, y, MOTTOS, size, t["ORANGE"],
-                          at + 0.2, total, 22)
+                          at + 0.15, total, 26)
     defs.extend(d)
     body.extend(b)
-    at += 0.2 + max(len(s) for s in MOTTOS) / 22 + 0.4
+    at += 0.15 + max(len(s) for s in MOTTOS) / 26 + 0.3
     y = y0 + (len(SESSION) + 1) * lh
     body.append(appear(x0, y, "❯", size, t["GREEN"], at, total, weight="700"))
     body.append(caret(x0 + 2 * size * CW, y, size, t["CYAN"], at + 0.1, total))
