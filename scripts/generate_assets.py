@@ -137,6 +137,41 @@ def centre_x(s, size):
     return W / 2 - len(s) * size * CW / 2
 
 
+def char_w(ch, size):
+    """Advance width of one glyph: CJK glyphs are ~full-width, the rest CW."""
+    return size * (1.02 if ord(ch) > 0x2E80 else CW)
+
+
+def rotating_typed(uid, x, y, phrases, size, fill, start, total, cps=26):
+    """Phrases that rotate one-per-loop: replay i shows phrases[i % n].
+
+    Each phrase is typed out at `start` inside its own loop and holds until the
+    loop ends; the animation cycle is total * len(phrases), so every motto gets
+    equal screen time. Clipping hides the phrase outside its loop.
+    Returns (defs, body)."""
+    cycle = total * len(phrases)
+    defs, body = [], []
+    for i, s in enumerate(phrases):
+        base = start + i * total
+        w, steps = 0.0, [(0.0, 0.0), (base, 0.0)]
+        for j, ch in enumerate(s):
+            w += char_w(ch, size)
+            steps.append((base + (j + 1) / cps, round(w, 2)))
+        vals, kt = keyframes(cycle, steps)
+        cid = f"{uid}{i}"
+        defs.append(
+            f'    <clipPath id="{cid}"><rect x="{x:.1f}" y="{y - size:.1f}" '
+            f'height="{size * 1.45:.1f}" width="0">'
+            f'<animate attributeName="width" values="{vals}" keyTimes="{kt}" '
+            f'calcMode="discrete" dur="{cycle:g}s" repeatCount="indefinite"/>'
+            f'</rect></clipPath>')
+        body.append(
+            f'  <text x="{x:.1f}" y="{y:.1f}" font-family="{MONO}" font-size="{size}" '
+            f'fill="{fill}" clip-path="url(#{cid})" '
+            f'xml:space="preserve">{esc(s)}</text>')
+    return defs, body
+
+
 # --------------------------------------------------------------------------- hero
 
 HERO_CMD = "ssh helloe365@github.com"
@@ -220,6 +255,7 @@ def hero_svg(t):
 # ----------------------------------------------------------------------- terminal
 
 # (text, colour_key, is_command). Commands type out; output lines land whole.
+# The $MOTTO output is NOT here — see MOTTOS below for the rotating version.
 SESSION = [
     ("whoami", "cmd", True),
     ("hello2world · undergrad @ Hunan University, AI & Robotics", "TEXT", False),
@@ -228,14 +264,21 @@ SESSION = [
     ("ls ~/ship", "cmd", True),
     ("CrackPDFPassword/   RagAgent/   CupLens/   FraudDetection/", "PURPLE", False),
     ("echo $MOTTO", "cmd", True),
-    ('"Stay hungry, Stay foolish."', "ORANGE", False),
+]
+
+# `echo $MOTTO` output rotates one phrase per loop (20s each), typed out
+# character by character just like the other output lines.
+MOTTOS = [
+    '"Stay hungry, Stay foolish."',
+    '"Talk is cheap. Show me the code."',
+    '"知行合一 · Stay curious."',
 ]
 
 
 def terminal_svg(t):
     size, lh, bar = 17, 31, 42
     x0, y0 = 34, 82
-    H = y0 + len(SESSION) * lh + 26
+    H = y0 + (len(SESSION) + 1) * lh + 26  # +1 line: the rotating motto
     total = 20.0
     defs = [glow_filter("tglow", 6)]
     body = [
@@ -262,7 +305,14 @@ def terminal_svg(t):
         else:
             body.append(appear(x0, y, line, size, t[key], at, total))
             at += 0.55
+    # rotating motto — one phrase per loop, typed like a normal output line
     y = y0 + len(SESSION) * lh
+    d, b = rotating_typed("tmotto", x0, y, MOTTOS, size, t["ORANGE"],
+                          at + 0.2, total, 22)
+    defs.extend(d)
+    body.extend(b)
+    at += 0.2 + max(len(s) for s in MOTTOS) / 22 + 0.4
+    y = y0 + (len(SESSION) + 1) * lh
     body.append(appear(x0, y, "❯", size, t["GREEN"], at, total, weight="700"))
     body.append(caret(x0 + 2 * size * CW, y, size, t["CYAN"], at + 0.1, total))
 
