@@ -475,6 +475,8 @@ def trophy_panels(info):
     for title, score, cond in base:
         rank, msg = rank_for(score, cond)
         base_ranks.append(rank)
+        if rank == "?":  # not earned yet — showing "Unknown / 0pt" only advertises a zero
+            continue
         panels.append((rank, title, msg, abridge(score)))
 
     # Secret trophies — only shown when earned (same as upstream filterByHidden)

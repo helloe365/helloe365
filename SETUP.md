@@ -7,6 +7,10 @@
 | 文件 | 作用 |
 |---|---|
 | `README.md` | 主页内容本体（徽章、技能表、统计卡片、精选项目、动画等） |
+| `scripts/generate_assets.py` | 生成 `assets/` 下手写的动画 SVG（头图、终端卡、分割线、页脚），离线、确定性输出 |
+| `scripts/generate_stats.py` | 生成 `stats/` 下的统计/语言/项目/活跃度/奖杯卡片（需 GITHUB_TOKEN） |
+| `scripts/check_links.py` | 一键检查 README 里每张图是否能正常渲染 |
+| `.github/workflows/generate-stats.yml` | 每天重新生成 `stats/` 卡片 |
 | `.github/workflows/snake.yml` | 每天自动生成"贪吃蛇吃贡献格"动画（存放到 `output` 分支） |
 | `.github/workflows/profile-3d-contrib.yml` | 每天自动生成 3D 贡献图（存放到 `profile-3d-contrib/` 目录） |
 
@@ -44,21 +48,30 @@ git push -u origin main
 
 ## 个性化修改
 
-- **打字机文案**：修改 README 顶部 `readme-typing-svg.demolab.com` 链接中的 `lines=` 参数，多行用 `;` 分隔，中文需 URL 编码
-- **统计卡片**：所有统计/语言/项目卡片均为本地 SVG（`stats/` 目录），由 `scripts/generate_stats.py` 生成 dark（tokyonight）+ light 双主题，配色修改脚本中的 `THEMES` 字典即可
-- **头部波浪**：修改 `capsule-render.vercel.app` 链接中的 `color=0:xxx,50:xxx,100:xxx` 渐变色（十六进制）
+顶部头图、终端卡片、分割线、页脚都是**手写的动画 SVG**，由 `scripts/generate_assets.py` 生成，不依赖任何外部服务（capsule-render / readme-typing-svg 这类 Vercel 实例已全部移除，不会再裂图）。改完跑一次即可：
+
+```bash
+python scripts/generate_assets.py   # 无需网络，无需 token
+python scripts/check_links.py       # 确认 README 里每张图都能渲染
+```
+
+- **头图文案**：改脚本里的 `HERO_CMD` / `HERO_TITLE` / `HERO_TAG`
+- **终端卡内容**：改脚本里的 `SESSION` 列表，`True` 为逐字打出的命令行，`False` 为整行弹出的输出
+- **配色**：改脚本顶部的 `THEMES` 字典（`""` 为暗色 tokyonight，`"-light"` 为亮色），两套主题同源生成，不会跑偏
+- **统计卡片**：均为本地 SVG（`stats/` 目录），由 `scripts/generate_stats.py` 生成 dark + light 双主题
 - **技能徽章**：直接增删技术栈表格中的 shields.io 徽章，或修改 `skillicons.dev` 链接的 `i=` 参数
-- **精选项目**：替换 pin 卡片的 `repo=` 参数为你想展示的项目
+- **精选项目**：改 `generate_stats.py` 里的 `FEATURED_REPOS`（仓库名 + 一句话简介）
+
+> 动画用的是 SMIL（`<animate>` / `<animateTransform>`）。GitHub 通过 `<img>` 加载 SVG，会执行 SVG 内部的 SMIL 和 CSS 动画，但会屏蔽脚本和外部资源——所以脚本里只用系统等宽字体，不引 Web Font。
 
 ## 致谢
 
 - [BEPb/BEPb](https://github.com/BEPb/BEPb) — 设计灵感来源
 - [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) — 统计卡片与项目卡片
-- [DenverCoder1/readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg) — 打字机动画
 - [Platane/snk](https://github.com/Platane/snk) — 贪吃蛇贡献动画
 - [yoshi389111/github-profile-3d-contrib](https://github.com/yoshi389111/github-profile-3d-contrib) — 3D 贡献图
 - [ryo-ma/github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) — 个人奖杯
-- [Ashutosh00710/github-readme-activity-graph](https://github.com/Ashutosh00710/github-readme-activity-graph) — 活跃度折线图（公共实例已停摆，可自部署后恢复）
+- [Ashutosh00710/github-readme-activity-graph](https://github.com/Ashutosh00710/github-readme-activity-graph) — 活跃度折线图（公共实例已停摆，现为本地生成）
 
 ---
 
