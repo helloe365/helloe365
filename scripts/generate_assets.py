@@ -137,41 +137,6 @@ def centre_x(s, size):
     return W / 2 - len(s) * size * CW / 2
 
 
-def char_w(ch, size):
-    """Advance width of one glyph: CJK glyphs are ~full-width, the rest CW."""
-    return size * (1.02 if ord(ch) > 0x2E80 else CW)
-
-
-def rotating_typed(uid, x, y, phrases, size, fill, start, total, cps=26):
-    """Phrases that rotate one-per-loop: replay i shows phrases[i % n].
-
-    Each phrase is typed out at `start` inside its own loop and holds until the
-    loop ends; the animation cycle is total * len(phrases), so every motto gets
-    equal screen time. Clipping hides the phrase outside its loop.
-    Returns (defs, body)."""
-    cycle = total * len(phrases)
-    defs, body = [], []
-    for i, s in enumerate(phrases):
-        base = start + i * total
-        w, steps = 0.0, [(0.0, 0.0), (base, 0.0)]
-        for j, ch in enumerate(s):
-            w += char_w(ch, size)
-            steps.append((base + (j + 1) / cps, round(w, 2)))
-        vals, kt = keyframes(cycle, steps)
-        cid = f"{uid}{i}"
-        defs.append(
-            f'    <clipPath id="{cid}"><rect x="{x:.1f}" y="{y - size:.1f}" '
-            f'height="{size * 1.45:.1f}" width="0">'
-            f'<animate attributeName="width" values="{vals}" keyTimes="{kt}" '
-            f'calcMode="discrete" dur="{cycle:g}s" repeatCount="indefinite"/>'
-            f'</rect></clipPath>')
-        body.append(
-            f'  <text x="{x:.1f}" y="{y:.1f}" font-family="{MONO}" font-size="{size}" '
-            f'fill="{fill}" clip-path="url(#{cid})" '
-            f'xml:space="preserve">{esc(s)}</text>')
-    return defs, body
-
-
 # --------------------------------------------------------------------------- hero
 
 HERO_CMD = "ssh helloe365@github.com"
@@ -255,7 +220,6 @@ def hero_svg(t):
 # ----------------------------------------------------------------------- terminal
 
 # (text, colour_key, is_command). Commands type out; output lines land whole.
-# The $MOTTO output is NOT here — see MOTTOS below for the rotating version.
 SESSION = [
     ("whoami", "cmd", True),
     ("hello2world · undergrad @ Hunan University, AI & Robotics", "TEXT", False),
@@ -264,22 +228,15 @@ SESSION = [
     ("ls ~/ship", "cmd", True),
     ("CrackPDFPassword/   RagAgent/   CupLens/   FraudDetection/", "PURPLE", False),
     ("echo $MOTTO", "cmd", True),
-]
-
-# `echo $MOTTO` output rotates one phrase per loop (7s each), typed out
-# character by character just like the other output lines.
-MOTTOS = [
-    '"Stay hungry, Stay foolish."',
-    '"Talk is cheap. Show me the code."',
-    '"知行合一 · Stay curious."',
+    ('"Stay hungry, Stay foolish."', "ORANGE", False),
 ]
 
 
 def terminal_svg(t):
     size, lh, bar = 17, 31, 42
     x0, y0 = 34, 82
-    H = y0 + (len(SESSION) + 1) * lh + 26  # +1 line: the rotating motto
-    total = 7.0
+    H = y0 + len(SESSION) * lh + 26
+    total = 20.0
     defs = [glow_filter("tglow", 6)]
     body = [
         f'  <rect width="{W}" height="{H}" rx="12" fill="{t["PANEL"]}"/>',
@@ -292,27 +249,20 @@ def terminal_svg(t):
                 f'font-size="13" fill="{t["MUTED"]}" text-anchor="middle">'
                 f'helloe365 — zsh — 96×24</text>')
 
-    at = 0.3
+    at = 0.5
     for i, (line, key, is_cmd) in enumerate(SESSION):
         y = y0 + i * lh
         if is_cmd:
             body.append(appear(x0, y, "❯", size, t["GREEN"], at, total, weight="700"))
             d, b = typed(f"tl{i}", x0 + 2 * size * CW, y, line, size, t["TITLE"],
-                         at + 0.1, total, 34)
+                         at + 0.15, total, 26)
             defs.append(d)
             body.append(b)
-            at += 0.2 + len(line) / 34
+            at += 0.35 + len(line) / 26
         else:
             body.append(appear(x0, y, line, size, t[key], at, total))
-            at += 0.4
-    # rotating motto — one phrase per loop, typed like a normal output line
+            at += 0.55
     y = y0 + len(SESSION) * lh
-    d, b = rotating_typed("tmotto", x0, y, MOTTOS, size, t["ORANGE"],
-                          at + 0.15, total, 26)
-    defs.extend(d)
-    body.extend(b)
-    at += 0.15 + max(len(s) for s in MOTTOS) / 26 + 0.3
-    y = y0 + (len(SESSION) + 1) * lh
     body.append(appear(x0, y, "❯", size, t["GREEN"], at, total, weight="700"))
     body.append(caret(x0 + 2 * size * CW, y, size, t["CYAN"], at + 0.1, total))
 
