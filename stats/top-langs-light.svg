@@ -2,34 +2,34 @@
   <rect width="495" height="195" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
   <text x="25" y="38" font-size="18" fill="#1f2328" font-weight="600" text-anchor="start">Most Used Languages</text>
   <line x1="0" y1="52" x2="495" y2="52" stroke="#8c959f" stroke-opacity="0.4"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#3572A5" stroke-width="24" stroke-dasharray="275.54 51.19" stroke-dashoffset="-0.00" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#3178c6" stroke-width="24" stroke-dasharray="19.04 307.68" stroke-dashoffset="-275.54" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#e34c26" stroke-width="24" stroke-dasharray="11.69 315.03" stroke-dashoffset="-294.58" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#563d7c" stroke-width="24" stroke-dasharray="8.03 318.69" stroke-dashoffset="-306.28" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#f1e05a" stroke-width="24" stroke-dasharray="3.87 322.85" stroke-dashoffset="-314.31" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#012456" stroke-width="24" stroke-dasharray="3.07 323.66" stroke-dashoffset="-318.18" transform="rotate(-90 150 118)"/>
-  <circle cx="150" cy="118" r="52" fill="none" stroke="#7aa2f7" stroke-width="24" stroke-dasharray="5.47 321.25" stroke-dashoffset="-321.25" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#3572A5" stroke-width="24" stroke-dasharray="283.05 43.68" stroke-dashoffset="-0.00" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#3178c6" stroke-width="24" stroke-dasharray="15.90 310.82" stroke-dashoffset="-283.05" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#e34c26" stroke-width="24" stroke-dasharray="9.77 316.96" stroke-dashoffset="-298.95" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#563d7c" stroke-width="24" stroke-dasharray="6.71 320.02" stroke-dashoffset="-308.72" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#f1e05a" stroke-width="24" stroke-dasharray="3.24 323.49" stroke-dashoffset="-315.43" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#89e051" stroke-width="24" stroke-dasharray="3.20 323.53" stroke-dashoffset="-318.66" transform="rotate(-90 150 118)"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#7aa2f7" stroke-width="24" stroke-dasharray="4.86 321.86" stroke-dashoffset="-321.86" transform="rotate(-90 150 118)"/>
   <text x="150" y="116" font-size="26" fill="#1f2328" font-weight="700" text-anchor="middle">6</text>
   <text x="150" y="138" font-size="11" fill="#8c959f" font-weight="normal" text-anchor="middle">languages</text>
   <rect x="255" y="67" width="12" height="12" rx="3" fill="#3572A5"/>
   <text x="275" y="78" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">Python</text>
-  <text x="470" y="78" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">84.3%</text>
+  <text x="470" y="78" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">86.6%</text>
   <rect x="255" y="88" width="12" height="12" rx="3" fill="#3178c6"/>
   <text x="275" y="99" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">TypeScript</text>
-  <text x="470" y="99" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">5.8%</text>
+  <text x="470" y="99" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">4.9%</text>
   <rect x="255" y="109" width="12" height="12" rx="3" fill="#e34c26"/>
   <text x="275" y="120" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">HTML</text>
-  <text x="470" y="120" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">3.6%</text>
+  <text x="470" y="120" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">3.0%</text>
   <rect x="255" y="130" width="12" height="12" rx="3" fill="#563d7c"/>
   <text x="275" y="141" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">CSS</text>
-  <text x="470" y="141" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">2.5%</text>
+  <text x="470" y="141" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">2.1%</text>
   <rect x="255" y="151" width="12" height="12" rx="3" fill="#f1e05a"/>
   <text x="275" y="162" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">JavaScript</text>
-  <text x="470" y="162" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">1.2%</text>
-  <rect x="255" y="172" width="12" height="12" rx="3" fill="#012456"/>
-  <text x="275" y="183" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">PowerShell</text>
-  <text x="470" y="183" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">0.9%</text>
+  <text x="470" y="162" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">1.0%</text>
+  <rect x="255" y="172" width="12" height="12" rx="3" fill="#89e051"/>
+  <text x="275" y="183" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">Shell</text>
+  <text x="470" y="183" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">1.0%</text>
   <rect x="255" y="193" width="12" height="12" rx="3" fill="#7aa2f7"/>
   <text x="275" y="204" font-size="13" fill="#1f2328" font-weight="normal" text-anchor="start">Other</text>
-  <text x="470" y="204" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">1.7%</text>
+  <text x="470" y="204" font-size="13" fill="#59636e" font-weight="normal" text-anchor="end">1.5%</text>
 </svg>
