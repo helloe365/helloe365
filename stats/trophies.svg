@@ -12,7 +12,7 @@
   <text x="185.0" y="104" font-size="13" fill="#7dcfff" font-weight="700" text-anchor="middle">A</text>
   <text x="185.0" y="138" font-size="12" fill="#c0caf5" font-weight="600" text-anchor="middle">Commits</text>
   <text x="185.0" y="154" font-size="8.5" fill="#9aa5ce" font-weight="normal" text-anchor="middle">High Committer</text>
-  <text x="185.0" y="169" font-size="9" fill="#565f89" font-weight="normal" text-anchor="middle">160pt</text>
+  <text x="185.0" y="169" font-size="9" fill="#565f89" font-weight="normal" text-anchor="middle">161pt</text>
   <circle cx="303" cy="98" r="22" fill="none" stroke="#9aa5ce" stroke-width="2.5"/>
   <text x="303.0" y="104" font-size="13" fill="#9aa5ce" font-weight="700" text-anchor="middle">C</text>
   <text x="303.0" y="138" font-size="12" fill="#c0caf5" font-weight="600" text-anchor="middle">Issues</text>
