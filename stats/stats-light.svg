@@ -3,7 +3,7 @@
   <text x="25" y="38" font-size="18" fill="#1f2328" font-weight="600" text-anchor="start">helloe365's GitHub Stats</text>
   <line x1="0" y1="52" x2="495" y2="52" stroke="#8c959f" stroke-opacity="0.4"/>
   <text x="25" y="88" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">⭐  Total Stars</text>
-  <text x="235" y="88" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">18</text>
+  <text x="235" y="88" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">19</text>
   <text x="25" y="125" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">💬  Total Commits</text>
   <text x="235" y="125" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">164</text>
   <text x="25" y="162" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">📦  Total Repos</text>
