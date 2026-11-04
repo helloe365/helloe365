@@ -5,18 +5,18 @@
 <text x="20" y="34" font-size="20" fill="#7dcfff" font-weight="600" text-anchor="start">Languages by bytes</text>
 <text x="20" y="66" font-size="16" fill="#c0caf5" font-weight="400" text-anchor="start">Python</text>
 <rect x="184" y="56" width="112" height="8" rx="4" fill="#2a2e45"/>
-<rect x="184" y="56" width="91.02" height="8" rx="4" fill="#bb9af7"/>
-<text x="380" y="66" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">81.3%</text>
+<rect x="184" y="56" width="90.93" height="8" rx="4" fill="#bb9af7"/>
+<text x="380" y="66" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">81.2%</text>
 <text x="20" y="94" font-size="16" fill="#c0caf5" font-weight="400" text-anchor="start">TypeScript</text>
 <rect x="184" y="84" width="112" height="8" rx="4" fill="#2a2e45"/>
-<rect x="184" y="84" width="7.81" height="8" rx="4" fill="#bb9af7"/>
+<rect x="184" y="84" width="7.85" height="8" rx="4" fill="#bb9af7"/>
 <text x="380" y="94" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">7.0%</text>
 <text x="20" y="122" font-size="16" fill="#c0caf5" font-weight="400" text-anchor="start">JavaScript</text>
 <rect x="184" y="112" width="112" height="8" rx="4" fill="#2a2e45"/>
-<rect x="184" y="112" width="4.30" height="8" rx="4" fill="#bb9af7"/>
-<text x="380" y="122" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">3.8%</text>
+<rect x="184" y="112" width="4.32" height="8" rx="4" fill="#bb9af7"/>
+<text x="380" y="122" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">3.9%</text>
 <text x="20" y="150" font-size="16" fill="#c0caf5" font-weight="400" text-anchor="start">Other</text>
 <rect x="184" y="140" width="112" height="8" rx="4" fill="#2a2e45"/>
-<rect x="184" y="140" width="8.87" height="8" rx="4" fill="#bb9af7"/>
-<text x="380" y="150" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">7.9%</text>
+<rect x="184" y="140" width="8.91" height="8" rx="4" fill="#bb9af7"/>
+<text x="380" y="150" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">8.0%</text>
 </svg>
