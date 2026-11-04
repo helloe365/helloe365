@@ -5,12 +5,12 @@
 ## 1. 设计决策
 
 1. **桌面阅读优先**：按本次确认保留项目 2×2、统计 1×2。49% 在 GitHub 手机页面不会自动变成 100%；正文摘要负责窄屏阅读，不宣称自动单列。
-2. **首屏直接到作品**：保留 hello2world、湖南大学本科在读和长沙，把 CrackPDFPassword、全部项目、联系我放在首屏；移除延迟显字、粒子、光晕和索要 star 的页脚文案。
-3. **保留终端记忆点**：正文在加载时全部可见，仅光标闪动三次。About 讲方向、动机和项目；技术栈单独列能力清单。
+2. **首屏直接到作品**：突出 hello2world、湖南大学硕士研究生在读和长沙，把 CrackPDFPassword、全部项目、联系我放在首屏。青紫色电路描边、微光和数据流光点增强视觉；文字立即可见，首屏动效在 3.6 秒内结束。
+3. **保留终端记忆点**：英文身份同步为 Master's Student；输出在加载时全部可见，光标闪动三次后停止。About 讲方向、动机和项目；技术栈单独列能力清单。
 4. **一套 Tokyo Night**：青用于导航与标题、紫用于技能、绿用于正向计数。亮色强调色进一步加深，自绘 SVG 正文对两种表面的最低对比度为 4.93:1。
-5. **减少重复与噪声**：5 个二级区块，20 个徽章；加上 8 个技能图标也只有 28 项。六行技能表居中，贡献细节折叠，取消不透明的奖杯等级和未证实的性能指标。
+5. **突出贡献入口**：5 个二级区块，20 个徽章，另有 8 个技能图标。贡献细节默认折叠，入口改为可点击的大字双主题 SVG；在三个视口中标题约为 44.3 / 20.4 / 14.8px，支持鼠标与键盘展开。
 6. **数字保留证据**：star/fork、语言字节与贡献来自 GitHub API；stats/data.json 保存渲染输入。请求失败即退出，不用零值替代缺失数据，也不把失败运行标记成刷新成功。
-7. **解决规格内的排版冲突**：自绘卡片使用 44/16、28/16 或 20/16px，每张图最多两档字号且都是 4 的倍数。徽章全站统一 flat，包括 Contact；徽章保留固有尺寸，避免百分比放大导致的布局失真。
+7. **解决规格内的排版冲突**：自绘卡片使用 44/16、32/16、28/16 或 20/16px，每张图最多两档字号且都是 4 的倍数。徽章全站统一 flat，包括 Contact；徽章保留固有尺寸，避免百分比放大导致的布局失真。
 8. **保留真实的托管边界**：自绘资产全部使用仓库相对路径。Shields 与 Skill Icons 使用官方双主题 URL；Snake 使用 output 分支的绝对 URL。这些是“所有图片相对路径”的明确例外。
 
 ## 2. README 与嵌入规则
@@ -18,7 +18,8 @@
 - README.md 必须位于公开同名仓库 helloe365/helloe365 的默认分支根目录。
 - 所有图片都由 picture 包裹，light source 指向亮色资源，img 默认使用暗色资源。
 - 本仓库自绘 SVG 的暗色文件沿用原名，亮色增加 -light 后缀；3D 图保留已有的两个历史文件名。
-- 首屏、终端、分隔线、页脚和纵向图表宽度为 100%；四张项目卡、统计卡对和图标行为 49%；不指定 img height。
+- 首屏、终端、分隔线、贡献折叠入口、页脚和纵向图表宽度为 100%；四张项目卡、统计卡对和图标行为 49%；不指定 img height。
+- 贡献入口使用 summary 内的 picture；SVG 的 alt 保留完整操作名称，GitHub 原生 details 负责鼠标与键盘交互。
 - Shields 徽章是固有尺寸的例外：其高度由服务固定为 20px，避免把小徽章拉伸成大卡片。不同主题的 labelColor、logoColor 一并指定。
 - 3D 与 Snake 不依赖第三方在线出图服务，均由本仓库 Actions 运行开源生成程序。
 - fork 后相对资产仍可读取；若改成自己的 Profile，需使用自己的公开同名仓库，并修改项目清单、身份、邮箱及 Snake 的账号 URL。
@@ -29,8 +30,9 @@
 
 | 文件（暗 / 亮） | viewBox | 字号 | 改造内容 |
 |---|---|---|---|
-| assets/hero.svg / hero-light.svg | 0 0 720 216 | 44 / 16 | 姓名、短定位与真实身份即刻出现；来源—检索—回答示意 |
-| assets/terminal.svg / terminal-light.svg | 0 0 720 252 | 16 | 保留终端形式，输出始终可见，光标 4.5 秒后停止 |
+| assets/hero.svg / hero-light.svg | 0 0 720 228 | 44 / 16 | 硕士在读身份独立成行；青紫电路微光、节点脉冲与 12px 数据流位移，3.6 秒内停止 |
+| assets/terminal.svg / terminal-light.svg | 0 0 720 252 | 16 | Master's Student 身份，输出始终可见，光标 4.5 秒后停止 |
+| assets/contributions-toggle.svg / contributions-toggle-light.svg | 0 0 600 96 | 32 / 16 | 全宽大字折叠入口，青色标题、向下箭头与完整操作 alt |
 | assets/divider.svg / divider-light.svg | 0 0 720 24 | 无 | 统一 1px 分隔线，移除发光动画 |
 | assets/footer.svg / footer-light.svg | 0 0 720 96 | 28 / 16 | 简短收尾，移除求 star 文案 |
 | stats/stats.svg / stats-light.svg | 0 0 400 165 | 20 / 16 | 六项可核查指标，时间范围写进标签与正文 |
@@ -46,12 +48,14 @@
 
 主色：暗色背景 #0b0d17、卡片 #1a1b27、描边 #2a2e45；亮色背景 #f7f9fc、卡片 #ffffff、描边 #e3e8f0。亮色青 #217594、紫 #7256a8、绿 #48752c；#2f9bc4 本身不足以保证白底小字 4.5:1，因此未直接采用。
 
+首屏使用原生 SMIL，不包含 JS、外部字体、CSS、ID 或滤镜。为遵守不使用 @media 的约束，自绘动效仅保留小幅、有限次数播放，停止后保留完整静态内容；没有声称能响应系统的减少动态效果设置。
+
 ## 4. 生成脚本与数据口径
 
 | 文件 / 函数 | 职责 |
 |---|---|
 | scripts/generate_assets.py：THEMES、text、svg | 共用颜色、字体、圆角与安全 SVG 文本转义 |
-| hero_svg、terminal_svg、divider_svg、footer_svg | 生成 8 张离线、确定性的插图 |
+| hero_svg、terminal_svg、contributions_toggle_svg、divider_svg、footer_svg | 生成 10 张离线、确定性的插图 |
 | contribution_settings | 同一套颜色生成 .github/profile-3d-settings.json |
 | style_contribution_svg | 给现有 3D 产物统一字体与图例颜色；不改变数据或贡献格几何 |
 | scripts/generate_stats.py：collect_snapshot | 分页抓取自有公开非 fork 仓库、语言字节和 GitHub 贡献日历 |
@@ -107,7 +111,7 @@ generate-stats.yml 的 profile-evidence artifact 保存本次输入与 SHA-256�
 
 ## 6. 三断点验收
 
-本次使用 GitHub Markdown API 清洗后的内容，以及当前 GitHub 个人页 DOM/CSS 做浏览器预览；远程图片已实际请求校验，并在预览中使用同一内容的本地副本。Snake 预览使用本次实际运行上游程序生成的新配色文件。该预览不是已经发布的 GitHub 页面。
+主页已发布至 https://github.com/helloe365。本节对应已发布 GitHub 网页的实际浏览器检查；线上截图使用 GitHub/Camo/Raw 的真实响应，没有替换图片或注入布局 CSS。检查日期：2026-11-04。
 
 | 视口 | 当前个人页内容宽度 | 双栏卡片正文约值 | 本次检查 / 预期 |
 |---|---:|---:|---|
@@ -120,17 +124,18 @@ generate-stats.yml 的 profile-evidence artifact 保存本次输入与 SHA-256�
 逐项检查：
 
 - [x] 亮 / 暗两套 × 1280 / 768 / 375，共 6 张截图。
-- [x] 各档没有横向溢出，项目顺序保持一致，图片全部加载。
+- [x] 各档没有横向溢出，项目顺序保持一致；每组 40 张图片全部加载。
 - [x] 5 个二级区块；20 个 Shields 徽章；8 个 Skill Icons 图标。
 - [x] 全部图片有明确 alt；身份、项目和联系方式均有独立正文，技术徽章有语义化 alt。
-- [x] 24 张自绘 SVG 的文字无出界或相互覆盖，字号为 4 的倍数。
+- [x] 本轮修改的 6 张 SVG 文字无出界或相互覆盖，字号为 4 的倍数；首屏亮暗动效均检查了开始、中间和结束帧。
 - [x] API 实时抓取、离线重放和异常输入检查已执行。
 - [x] 上游 3D 与 Snake 程序已在本地运行；3D 配色处理幂等。
-- [ ] 发布后的 GitHub 网页版：再检查主题切换、Camo 图片加载、导航与 output 分支图片。
-- [ ] GitHub App：用实际设备检查 1280/768/375 对应布局、亮暗切换及链接跳转。
-- [ ] 新版 GitHub Actions：发布后手动运行，核对本地与 artifact 的相同输入哈希。
+- [x] 发布后的 GitHub 网页版：主题切换、Camo 图片、导航、贡献入口的点击与键盘展开、output 分支图片。
+- [x] 72 个实际图片地址（含 42 个 Camo 地址）均返回 200；28 张主分支 SVG 的响应哈希与仓库一致。
+- [x] 统计与 3D Actions 实际运行；统计 artifact 输入在本地重放，与 runner 的 SHA-256 一致。
+- [ ] GitHub App：用户暂时无法实机检查，亮暗切换、图片、链接跳转和横向溢出仍待设备验收。
 
-生成程序本地运行通过，不等于验证过 GitHub runner 的实际令牌权限、远程提交或 GitHub App。
+本轮运行：[统计与插图](https://github.com/helloe365/helloe365/actions/runs/41815502204)、[3D 贡献图](https://github.com/helloe365/helloe365/actions/runs/41815502070)。Snake 工作流本轮未修改，[已通过的实际运行](https://github.com/helloe365/helloe365/actions/runs/41812457244)已发布青色蛇身；output 分支图片已在线核对。网页版检查不能替代 GitHub App 实机检查。
 
 ## 7. 上游与维护
 
