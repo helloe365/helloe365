@@ -2,36 +2,59 @@ name: GitHub Profile 3D Contributions
 
 on:
   schedule:
-    - cron: "30 0 * * *" # 每天 UTC 00:30（北京时间 08:30）自动运行
-  workflow_dispatch: # 支持手动触发
+    - cron: "30 0 * * *" # UTC 00:30 / Asia-Shanghai 08:30
+  workflow_dispatch:
   push:
-    branches:
-      - main
-      - master
+    branches: [main, master]
+    paths:
+      - scripts/generate_assets.py
+      - .github/profile-3d-settings.json
+      - .github/workflows/profile-3d-contrib.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-default-branch
+  cancel-in-progress: false
 
 jobs:
   build:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
-    name: Generate 3D contribution SVG
-
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate shared Tokyo Night settings
+        run: python scripts/generate_assets.py
 
       - uses: yoshi389111/github-profile-3d-contrib@v0.9.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
+          SETTING_JSON: .github/profile-3d-settings.json
 
-      - name: Commit & Push
+      - name: Match the shared font and language colors
+        run: python scripts/generate_assets.py --style-contrib
+
+      - name: Verify generated SVGs
+        run: |
+          python -c "import xml.etree.ElementTree as ET; from pathlib import Path; [ET.parse(p) for p in (Path('profile-3d-contrib/profile-night-rainbow.svg'), Path('profile-3d-contrib/profile-season-animate.svg'))]"
+
+      - name: Commit contribution diagrams
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -A profile-3d-contrib
-          git commit -m "chore: update 3d-contrib [skip ci]" || echo "No changes to commit"
-          for i in 1 2 3; do
-            git pull --rebase && git push && exit 0
-            sleep 5
-          done
-          exit 1
+          git add -- assets/*.svg .github/profile-3d-settings.json profile-3d-contrib/profile-night-rainbow.svg profile-3d-contrib/profile-season-animate.svg
+          if git diff --cached --quiet; then
+            echo "Contribution diagrams are unchanged."
+            exit 0
+          fi
+          git commit -m "chore: update contribution diagrams [skip ci]"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"

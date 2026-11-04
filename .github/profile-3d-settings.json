@@ -1,0 +1,36 @@
+[
+  {
+    "type": "normal",
+    "fileName": "profile-night-rainbow.svg",
+    "backgroundColor": "#1a1b27",
+    "foregroundColor": "#a9b1d6",
+    "strongColor": "#c0caf5",
+    "weakColor": "#a9b1d6",
+    "radarColor": "#9ece6a",
+    "growingAnimation": false,
+    "contribColors": [
+      "#1a1b27",
+      "#3b4838",
+      "#5c7448",
+      "#7da159",
+      "#9ece6a"
+    ]
+  },
+  {
+    "type": "normal",
+    "fileName": "profile-season-animate.svg",
+    "backgroundColor": "#ffffff",
+    "foregroundColor": "#5c6b84",
+    "strongColor": "#1a2233",
+    "weakColor": "#5c6b84",
+    "radarColor": "#48752c",
+    "growingAnimation": false,
+    "contribColors": [
+      "#ffffff",
+      "#d1dcca",
+      "#a4ba96",
+      "#769861",
+      "#48752c"
+    ]
+  }
+]

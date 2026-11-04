@@ -1,606 +1,367 @@
 #!/usr/bin/env python3
-"""Generate local stats SVGs (tokyonight style) for the GitHub profile README.
+"""Fetch GitHub evidence once, then render all local stats from the same snapshot.
 
-Outputs (written to ./stats/, dark "tokyonight" + light variants):
-  stats.svg / stats-light.svg           - overall stats card
-  top-langs.svg / top-langs-light.svg   - languages donut card
-  pin-<repo>.svg / pin-<repo>-light.svg - one card per featured repo
-  activity.svg / activity-light.svg     - contribution activity area chart
-  trophies.svg / trophies-light.svg     - trophy wall (ryo-ma algorithm replica)
-    (activity/trophies require GITHUB_TOKEN; skipped with a warning when unavailable)
-
-Environment:
-  GITHUB_USER   - GitHub username (default: helloe365)
-  GITHUB_TOKEN  - token for higher API rate limits (optional but recommended)
+Live: GITHUB_TOKEN=... python scripts/generate_stats.py
+Offline replay: python scripts/generate_stats.py --snapshot stats/data.json
+Only the Python standard library is required. A failed API request aborts before
+writing any outputs; missing data is never turned into a zero or a stale card.
 """
+import argparse
 import json
 import math
 import os
 import time
-import urllib.parse
+import urllib.error
 import urllib.request
-from datetime import datetime, timezone
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
-USER = os.environ.get("GITHUB_USER", "helloe365")
-TOKEN = os.environ.get("GITHUB_TOKEN", "")
+from generate_assets import ROOT, THEMES, svg, text
+
 API = "https://api.github.com"
-# (repo, blurb). The blurb overrides the repo's own description so the cards stay
-# English regardless of the language the repo is documented in. Keep blurbs <= 66
-# chars or trunc() will ellipsize them.
-FEATURED_REPOS = [
-    ("CrackPDFPassword", "Multi-process CPU + hashcat GPU recovery, fully resumable"),
-    ("CupLens", "Forecasting with versioned models and hashed provenance"),
-    ("RagAgent", "LangChain RAG: ReAct tools, incremental KB, streaming UI"),
-    ("AdaptiveFinancialFraudDetectionSystem",
-     "DevNet deviation network + VAE augmentation for fraud detection"),
-]
-
-LANG_COLORS = {
-    "Python": "#3572A5", "HTML": "#e34c26", "CSS": "#563d7c",
-    "JavaScript": "#f1e05a", "TypeScript": "#3178c6", "Shell": "#89e051",
-    "C": "#555555", "C++": "#f34b7d", "Java": "#b07219",
-    "Jupyter Notebook": "#DA5B0B", "TeX": "#3D6117", "Makefile": "#427819",
-    "Dockerfile": "#384d54", "Go": "#00ADD8", "Rust": "#dea584",
-    "Vue": "#41b883", "SCSS": "#c6538c", "PowerShell": "#012456",
-    "Batchfile": "#C1F12E", "SQL": "#e38c00", "MDX": "#fcb32c",
-}
-
-PURPLE = "#bb9af7"
-CYAN = "#7dcfff"
-GREEN = "#9ece6a"
-ORANGE = "#ff9e64"
-FONT = "Segoe UI, Ubuntu, Helvetica, Arial, sans-serif"
-
-# filename suffix -> palette. "" = dark (tokyonight), "-light" = GitHub light.
-THEMES = {
-    "": {
-        "BG": "#1a1b27", "FG": "#c0caf5", "MUTED": "#565f89",
-        "SUBTLE": "#9aa5ce", "ACCENT": "#7aa2f7", "BORDER": "#1a1b27",
-        "RANKS": {
-            "SSS": "#ffd700", "SS": "#ff9e64", "S": "#e0af68",
-            "AAA": "#bb9af7", "AA": "#7aa2f7", "A": "#7dcfff",
-            "B": "#9ece6a", "C": "#9aa5ce", "SECRET": "#f7768e", "?": "#565f89",
-        },
+FEATURED_REPOS = {
+    "CrackPDFPassword": {
+        "title": ["CrackPDFPassword"],
+        "description": "恢复自有或授权 PDF 的遗忘密码",
+        "highlight": "中断后可从检查点继续",
+        "stack": [("code", "Python"), ("chip", "hashcat")],
     },
-    "-light": {
-        "BG": "#ffffff", "FG": "#1f2328", "MUTED": "#8c959f",
-        "SUBTLE": "#59636e", "ACCENT": "#0969da", "BORDER": "#d1d9e0",
-        "RANKS": {
-            "SSS": "#b08800", "SS": "#bc4c00", "S": "#9a6700",
-            "AAA": "#8250df", "AA": "#0969da", "A": "#0550ae",
-            "B": "#1a7f37", "C": "#59636e", "SECRET": "#cf222e", "?": "#8c959f",
-        },
+    "CupLens": {
+        "title": ["CupLens"],
+        "description": "为赛事预测保留可追溯依据",
+        "highlight": "保存模型版本、来源与快照哈希",
+        "stack": [("code", "Python"), ("api", "FastAPI"), ("layers", "React")],
+    },
+    "RagAgent": {
+        "title": ["RagAgent"],
+        "description": "让本地知识库支持检索问答",
+        "highlight": "内容未变的文件不重复入库",
+        "stack": [("code", "Python"), ("layers", "LangChain"), ("data", "SQLite")],
+    },
+    "AdaptiveFinancialFraudDetectionSystem": {
+        "title": ["AdaptiveFinancial", "FraudDetectionSystem"],
+        "description": "识别不平衡交易数据中的欺诈",
+        "highlight": "VAE 增强少数类，DevNet 检测",
+        "stack": [("code", "Python"), ("layers", "PyTorch"), ("data", "VAE")],
     },
 }
-
-BG = FG = MUTED = SUBTLE = ACCENT = BORDER = ""
-RANKS = {}
-
-
-def use_theme(palette):
-    global BG, FG, MUTED, SUBTLE, ACCENT, BORDER, RANKS
-    BG = palette["BG"]
-    FG = palette["FG"]
-    MUTED = palette["MUTED"]
-    SUBTLE = palette["SUBTLE"]
-    ACCENT = palette["ACCENT"]
-    BORDER = palette["BORDER"]
-    RANKS = palette["RANKS"]
-
-
-def api(path, retries=4, critical=True):
-    """GET a GitHub API path with retries. Returns None on failure when not critical."""
-    url = API + path
-    last_err = None
-    for i in range(retries):
-        try:
-            headers = {
-                "Accept": "application/vnd.github+json",
-                "User-Agent": "profile-stats-generator",
-            }
-            if TOKEN:
-                headers["Authorization"] = f"Bearer {TOKEN}"
-            req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=30) as r:
-                return json.loads(r.read().decode())
-        except Exception as e:  # noqa: BLE001
-            last_err = e
-            time.sleep(2 * (i + 1))
-    if critical:
-        raise last_err
-    print(f"WARN: request failed: {url} ({last_err})")
-    return None
-
-
-def esc(s):
-    return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-
-
-def trunc(s, n):
-    s = s or ""
-    return s if len(s) <= n else s[: n - 1] + "…"
-
-
-def fmt(n):
-    return f"{n:,}"
-
-
-def svg_wrap(w, h, body):
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
-        f'viewBox="0 0 {w} {h}" font-family="{FONT}">\n'
-        f'  <rect width="{w}" height="{h}" rx="10" fill="{BG}" stroke="{BORDER}"/>\n{body}\n</svg>\n'
-    )
-
-
-def text(x, y, content, size=13, fill=SUBTLE, weight="normal", anchor="start"):
-    return (
-        f'  <text x="{x}" y="{y}" font-size="{size}" fill="{fill}" '
-        f'font-weight="{weight}" text-anchor="{anchor}">{esc(content)}</text>'
-    )
-
-
-def stats_svg(stars, commits, repos, forks, prs, issues):
-    left = [
-        ("⭐", "Total Stars", stars, ORANGE),
-        ("💬", "Total Commits", commits, CYAN),
-        ("📦", "Total Repos", repos, PURPLE),
-    ]
-    right = [
-        ("🍴", "Total Forks", forks, ACCENT),
-        ("🔀", "Total PRs", prs, GREEN),
-        ("📋", "Total Issues", issues, "#f7768e"),
-    ]
-    body = [text(25, 38, f"{USER}'s GitHub Stats", 18, FG, "600")]
-    body.append(f'  <line x1="0" y1="52" x2="495" y2="52" stroke="{MUTED}" stroke-opacity="0.4"/>')
-    for idx, (icon, label, value, color) in enumerate(left):
-        y = 88 + idx * 37
-        body.append(text(25, y, f"{icon}  {label}", 13, SUBTLE))
-        body.append(text(235, y, fmt(value), 15, FG, "600", anchor="end"))
-    for idx, (icon, label, value, color) in enumerate(right):
-        y = 88 + idx * 37
-        body.append(text(265, y, f"{icon}  {label}", 13, SUBTLE))
-        body.append(text(470, y, fmt(value), 15, FG, "600", anchor="end"))
-    return svg_wrap(495, 195, "\n".join(body))
-
-
-def langs_svg(lang_items):
-    """lang_items: list of (lang, bytes)."""
-    total = sum(b for _, b in lang_items) or 1
-    top = lang_items[:6]
-    other = sum(b for _, b in lang_items[6:])
-    if other > 0:
-        top.append(("Other", other))
-
-    cx, cy, r, sw = 150, 118, 52, 24
-    c = 2 * math.pi * r
-    acc = 0.0
-    arcs = []
-    for lang, b in top:
-        seg = b / total * c
-        color = LANG_COLORS.get(lang, "#7aa2f7" if lang == "Other" else "#565f89")
-        dash = f"{seg:.2f} {c - seg:.2f}"
-        arcs.append(
-            f'  <circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{color}" '
-            f'stroke-width="{sw}" stroke-dasharray="{dash}" stroke-dashoffset="{-acc:.2f}" '
-            f'transform="rotate(-90 {cx} {cy})"/>'
-        )
-        acc += seg
-
-    body = [text(25, 38, "Most Used Languages", 18, FG, "600")]
-    body.append(f'  <line x1="0" y1="52" x2="495" y2="52" stroke="{MUTED}" stroke-opacity="0.4"/>')
-    body.extend(arcs)
-    body.append(text(cx, cy - 2, str(len(top) - (1 if other > 0 else 0)), 26, FG, "700", "middle"))
-    body.append(text(cx, cy + 20, "languages", 11, MUTED, "normal", "middle"))
-    ly = 78
-    for lang, b in top:
-        color = LANG_COLORS.get(lang, "#7aa2f7" if lang == "Other" else "#565f89")
-        pct = b / total * 100
-        body.append(f'  <rect x="255" y="{ly - 11}" width="12" height="12" rx="3" fill="{color}"/>')
-        body.append(text(275, ly, lang, 13, FG))
-        body.append(text(470, ly, f"{pct:.1f}%", 13, SUBTLE, "normal", "end"))
-        ly += 21
-    return svg_wrap(495, 195, "\n".join(body))
-
-
-def pin_svg(repo, blurb=None):
-    name = repo["name"]
-    desc = trunc(blurb or repo.get("description") or "", 66)
-    lang = repo.get("language") or ""
-    stars = repo.get("stargazers_count", 0)
-    forks = repo.get("forks_count", 0)
-    color = LANG_COLORS.get(lang, "#7aa2f7")
-
-    body = [text(25, 38, name, 17, ACCENT, "600")]
-    body.append(f'  <rect x="{25 + 8.2 * len(name) + 10:.0f}" y="24" width="52" height="18" rx="9" '
-                f'fill="none" stroke="{MUTED}"/>')
-    body.append(text(25 + 8.2 * len(name) + 36, 37, "Public", 11, MUTED, "normal", "middle"))
-    body.append(text(25, 68, desc, 13, SUBTLE))
-    if lang:
-        body.append(f'  <circle cx="31" cy="102" r="6" fill="{color}"/>')
-        body.append(text(43, 106, lang, 12, FG))
-    body.append(text(495 - 130, 106, f"⭐ {fmt(stars)}", 12, SUBTLE))
-    body.append(text(495 - 60, 106, f"🍴 {fmt(forks)}", 12, SUBTLE))
-    return svg_wrap(495, 128, "\n".join(body))
-
-
-GQL = "https://api.github.com/graphql"
 CAL_QUERY = """
 query($login: String!) {
   user(login: $login) {
     contributionsCollection {
+      totalCommitContributions
+      totalPullRequestContributions
+      totalIssueContributions
+      totalPullRequestReviewContributions
       contributionCalendar {
         totalContributions
         weeks { contributionDays { date contributionCount } }
       }
     }
   }
-}"""
-MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+}
+"""
 
 
-def graphql(query, variables, retries=4):
-    """POST a GraphQL query. Returns None on failure (never raises)."""
-    if not TOKEN:
-        print("WARN: GITHUB_TOKEN not set, skipping activity graph")
-        return None
-    payload = json.dumps({"query": query, "variables": variables}).encode()
-    last_err = None
-    for i in range(retries):
+def request_json(path, token, payload=None):
+    url = API + path
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "helloe365-profile",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    body = None if payload is None else json.dumps(payload).encode("utf-8")
+    if body:
+        headers["Content-Type"] = "application/json"
+    for attempt in range(3):
         try:
-            req = urllib.request.Request(
-                GQL, data=payload, method="POST",
-                headers={
-                    "Authorization": f"Bearer {TOKEN}",
-                    "Accept": "application/vnd.github+json",
-                    "User-Agent": "profile-stats-generator",
-                    "Content-Type": "application/json",
-                })
-            with urllib.request.urlopen(req, timeout=30) as r:
-                data = json.loads(r.read().decode())
-            if data.get("errors"):
-                raise RuntimeError(data["errors"])
-            return data.get("data")
-        except Exception as e:  # noqa: BLE001
-            last_err = e
-            time.sleep(2 * (i + 1))
-    print(f"WARN: graphql request failed ({last_err})")
-    return None
+            req = urllib.request.Request(url, data=body, headers=headers)
+            with urllib.request.urlopen(req, timeout=30) as response:
+                data = json.load(response)
+            if isinstance(data, dict) and data.get("errors"):
+                raise RuntimeError(f"GitHub GraphQL error: {data['errors']}")
+            return data
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                raise RuntimeError(f"GitHub HTTP {exc.code}: {path}") from exc
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            if attempt == 2:
+                raise
+        time.sleep(attempt + 1)
+    raise RuntimeError(f"GitHub request failed: {path}")
 
 
-def contribution_weeks():
-    """Return (total_contributions, [(week_start_date, weekly_sum), ...])."""
-    data = graphql(CAL_QUERY, {"login": USER})
-    if not data:
-        return 0, []
-    cal = (data.get("user") or {}).get("contributionsCollection", {}).get(
-        "contributionCalendar", {})
-    weeks = []
-    for w in cal.get("weeks", []):
-        days = w.get("contributionDays", [])
-        if days:
-            weeks.append((days[0]["date"], sum(d["contributionCount"] for d in days)))
-    return cal.get("totalContributions", 0), weeks
-
-
-def nice_max(v):
-    """Smallest candidate >= v; all candidates divisible by 3 for clean gridlines."""
-    for m in (6, 9, 12, 15, 18, 24, 30, 45, 60, 90, 120, 150, 300, 600, 900, 1200):
-        if v <= m:
-            return m
-    return ((v // 600) + 1) * 600
-
-
-def activity_svg(total, weeks):
-    W, H = 850, 240
-    x0, x1, y0, y1 = 48, W - 20, 68, 190
-    vals = [v for _, v in weeks]
-    top = nice_max(max(vals) if vals else 0)
-    n = len(weeks)
-
-    def px(i):
-        return x0 + (x1 - x0) * (i / (n - 1) if n > 1 else 0.5)
-
-    def py(v):
-        return y1 - (y1 - y0) * (v / top)
-
-    pts = [(px(i), py(v)) for i, v in enumerate(vals)]
-    line = "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
-    area = f"{line} L {pts[-1][0]:.1f},{y1} L {pts[0][0]:.1f},{y1} Z"
-
-    body = [
-        f'  <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">'
-        f'<stop offset="0%" stop-color="{ACCENT}" stop-opacity="0.35"/>'
-        f'<stop offset="100%" stop-color="{ACCENT}" stop-opacity="0.02"/>'
-        f'</linearGradient></defs>',
-        text(25, 38, "Contribution Activity", 18, FG, "600"),
-        text(W - 20, 38, f"{fmt(total)} contributions in the last year",
-             13, SUBTLE, "normal", "end"),
-        f'  <line x1="0" y1="52" x2="{W}" y2="52" stroke="{MUTED}" stroke-opacity="0.4"/>',
-    ]
-    for frac in (0, 1 / 3, 2 / 3, 1):
-        gy = y1 - (y1 - y0) * frac
-        body.append(f'  <line x1="{x0}" y1="{gy:.1f}" x2="{x1}" y2="{gy:.1f}" '
-                    f'stroke="{MUTED}" stroke-opacity="0.25"/>')
-        body.append(text(x0 - 8, gy + 4, f"{top * frac:g}", 11, MUTED,
-                         "normal", "end"))
-    body.append(f'  <path d="{area}" fill="url(#fade)"/>')
-    body.append(f'  <path d="{line}" fill="none" stroke="{ACCENT}" '
-                f'stroke-width="2" stroke-linejoin="round"/>')
-    prev_month = None
-    for i, (date, _) in enumerate(weeks):
-        month = int(date[5:7])
-        if month != prev_month:
-            anchor = "start" if i == 0 else "middle"
-            body.append(text(px(i), H - 12, MONTHS[month - 1], 11, MUTED,
-                             "normal", anchor))
-            prev_month = month
-    return svg_wrap(W, H, "\n".join(body))
-
-
-TROPHY_QUERY = """
-query($login: String!) {
-  user(login: $login) {
-    createdAt
-    followers { totalCount }
-    organizations { totalCount }
-    contributionsCollection {
-      totalCommitContributions
-      restrictedContributionsCount
-      totalPullRequestReviewContributions
-    }
-    openIssues: issues(states: OPEN) { totalCount }
-    closedIssues: issues(states: CLOSED) { totalCount }
-    pullRequests { totalCount }
-    repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
-      totalCount
-      nodes {
-        stargazerCount
-        createdAt
-        languages(first: 10) { nodes { name } }
-      }
-    }
-  }
-}"""
-
-# Rank thresholds replicated from ryo-ma/github-profile-trophy (src/trophy.ts).
-RANK_ORDER = ["SECRET", "SSS", "SS", "S", "AAA", "AA", "A", "B", "C", "?"]
-COND_STAR = [("SSS", "Super Stargazer", 2000), ("SS", "High Stargazer", 700),
-             ("S", "Stargazer", 200), ("AAA", "Super Star", 100),
-             ("AA", "High Star", 50), ("A", "You are a Star", 30),
-             ("B", "Middle Star", 10), ("C", "First Star", 1)]
-COND_COMMIT = [("SSS", "God Committer", 4000), ("SS", "Deep Committer", 2000),
-               ("S", "Super Committer", 1000), ("AAA", "Ultra Committer", 500),
-               ("AA", "Hyper Committer", 200), ("A", "High Committer", 100),
-               ("B", "Middle Committer", 10), ("C", "First Commit", 1)]
-COND_FOLLOWER = [("SSS", "Super Celebrity", 1000), ("SS", "Ultra Celebrity", 400),
-                 ("S", "Hyper Celebrity", 200), ("AAA", "Famous User", 100),
-                 ("AA", "Active User", 50), ("A", "Dynamic User", 20),
-                 ("B", "Many Friends", 10), ("C", "First Friend", 1)]
-COND_ISSUE = [("SSS", "God Issuer", 1000), ("SS", "Deep Issuer", 500),
-              ("S", "Super Issuer", 200), ("AAA", "Ultra Issuer", 100),
-              ("AA", "Hyper Issuer", 50), ("A", "High Issuer", 20),
-              ("B", "Middle Issuer", 10), ("C", "First Issue", 1)]
-COND_PR = [("SSS", "God Puller", 1000), ("SS", "Deep Puller", 500),
-           ("S", "Super Puller", 200), ("AAA", "Ultra Puller", 100),
-           ("AA", "Hyper Puller", 50), ("A", "High Puller", 20),
-           ("B", "Middle Puller", 10), ("C", "First Pull", 1)]
-COND_REPO = [("SSS", "God Repo Creator", 50), ("SS", "Deep Repo Creator", 45),
-             ("S", "Super Repo Creator", 40), ("AAA", "Ultra Repo Creator", 35),
-             ("AA", "Hyper Repo Creator", 30), ("A", "High Repo Creator", 20),
-             ("B", "Middle Repo Creator", 10), ("C", "First Repository", 1)]
-COND_REVIEW = [("SSS", "God Reviewer", 70), ("SS", "Deep Reviewer", 57),
-               ("S", "Super Reviewer", 45), ("AAA", "Ultra Reviewer", 30),
-               ("AA", "Hyper Reviewer", 20), ("A", "Active Reviewer", 8),
-               ("B", "Intermediate Reviewer", 3), ("C", "New Reviewer", 1)]
-COND_DURATION = [("SSS", "Seasoned Veteran", 70), ("SS", "Grandmaster", 55),
-                 ("S", "Master Dev", 40), ("AAA", "Expert Dev", 28),
-                 ("AA", "Experienced Dev", 18), ("A", "Intermediate Dev", 11),
-                 ("B", "Junior Dev", 6), ("C", "Newbie", 2)]
-
-
-def trophy_info():
-    """Fetch all trophy inputs in one GraphQL query. Returns None on failure."""
-    data = graphql(TROPHY_QUERY, {"login": USER})
-    if not data:
-        return None
-    u = data.get("user") or {}
-    repos = u.get("repositories", {}) or {}
-    nodes = repos.get("nodes") or []
-    cc = u.get("contributionsCollection", {}) or {}
-
-    earliest = u.get("createdAt")
-    langs, stars = set(), 0
-    for n in nodes:
-        stars += n.get("stargazerCount", 0)
-        if earliest is None or n.get("createdAt", "") < earliest:
-            earliest = n.get("createdAt") or earliest
-        for l in (n.get("languages") or {}).get("nodes") or []:
-            langs.add(l.get("name"))
-
-    days, joined_year = 0, None
-    if earliest:
-        dt = datetime.fromisoformat(earliest.replace("Z", "+00:00"))
-        days = max(0, (datetime.now(timezone.utc) - dt).days)
-        joined_year = dt.year
-
-    return {
-        "stars": stars,
-        "commits": cc.get("totalCommitContributions", 0)
-        + cc.get("restrictedContributionsCount", 0),
-        "followers": (u.get("followers") or {}).get("totalCount", 0),
-        "issues": (u.get("openIssues") or {}).get("totalCount", 0)
-        + (u.get("closedIssues") or {}).get("totalCount", 0),
-        "prs": (u.get("pullRequests") or {}).get("totalCount", 0),
-        "repos": repos.get("totalCount", len(nodes)),
-        "reviews": cc.get("totalPullRequestReviewContributions", 0),
-        "langs": len(langs),
-        "orgs": (u.get("organizations") or {}).get("totalCount", 0),
-        "duration_year": days // 365,
-        "duration_score": days // 100,
-        "joined_year": joined_year,
-    }
-
-
-def rank_for(score, conditions):
-    """Highest-priority rank whose threshold is met (RANK_ORDER = priority)."""
-    for rank, msg, threshold in sorted(
-            conditions, key=lambda c: RANK_ORDER.index(c[0])):
-        if score >= threshold:
-            return rank, msg
-    return "?", "Unknown"
-
-
-def abridge(score):
-    if abs(score) < 1:
-        return "0pt"
-    if abs(score) > 999:
-        return f"{score / 1000:.1f}kpt"
-    return f"{score}pt"
-
-
-def trophy_panels(info):
-    """Return [(rank, title, message, bottom_text), ...] to display."""
-    base = [
-        ("Stars", info["stars"], COND_STAR),
-        ("Commits", info["commits"], COND_COMMIT),
-        ("Followers", info["followers"], COND_FOLLOWER),
-        ("Issues", info["issues"], COND_ISSUE),
-        ("PullRequest", info["prs"], COND_PR),
-        ("Repositories", info["repos"], COND_REPO),
-        ("Reviews", info["reviews"], COND_REVIEW),
-    ]
-    panels, base_ranks = [], []
-    for title, score, cond in base:
-        rank, msg = rank_for(score, cond)
-        base_ranks.append(rank)
-        if rank == "?":  # not earned yet — showing "Unknown / 0pt" only advertises a zero
-            continue
-        panels.append((rank, title, msg, abridge(score)))
-
-    # Secret trophies — only shown when earned (same as upstream filterByHidden)
-    jy = info["joined_year"]
-    if all(r.startswith("S") for r in base_ranks):
-        panels.append(("SECRET", "All S", "S Rank Hacker", ""))
-    if info["langs"] >= 10:
-        panels.append(("SECRET", "Languages", "Rainbow Lang User",
-                       abridge(info["langs"])))
-    if info["duration_year"] >= 10:
-        panels.append(("SECRET", "Veteran", "Village Elder",
-                       abridge(info["duration_year"])))
-    if jy is not None and jy <= 2008:
-        panels.append(("SECRET", "OG", "OG User", "Joined 2008"))
-    if jy is not None and jy <= 2010:
-        panels.append(("SECRET", "Ancient", "Ancient User", "Joined 2010"))
-    if jy == 2020:
-        panels.append(("SECRET", "2020", "Everything started...", "Joined 2020"))
-    if info["orgs"] >= 3:
-        panels.append(("SECRET", "Orgs", "Jack of all Trades",
-                       abridge(info["orgs"])))
-    rank, msg = rank_for(info["duration_score"], COND_DURATION)
-    if rank != "?":
-        panels.append((rank, "Experience", msg, ""))
-    return panels
-
-
-def _panel(x, y, rank, title, message, bottom):
-    color = RANKS.get(rank, MUTED)
-    rank_size = 13 if len(rank) <= 3 else 8.5  # "SECRET" needs a smaller font
-    parts = [
-        f'  <circle cx="{x + 55:.0f}" cy="{y + 34}" r="22" fill="none" '
-        f'stroke="{color}" stroke-width="2.5"/>',
-        text(x + 55, y + 40, rank, rank_size, color, "700", "middle"),
-        text(x + 55, y + 74, title, 12, FG, "600", "middle"),
-        text(x + 55, y + 90, message, 8.5, SUBTLE, "normal", "middle"),
-    ]
-    if bottom:
-        parts.append(text(x + 55, y + 105, bottom, 9, MUTED, "normal", "middle"))
-    return parts
-
-
-def trophies_svg(info):
-    panels = trophy_panels(info)
-    per_row = 7  # 7 * 118px = 826px, fits the 850px canvas
-    rows = [panels[i:i + per_row] for i in range(0, len(panels), per_row)]
-    W = 850
-    H = 64 + len(rows) * 118 + 12
-    body = [
-        text(25, 38, f"{USER}'s Trophies", 18, FG, "600"),
-        text(W - 20, 38, f"{len(panels)} trophies unlocked", 13, SUBTLE,
-             "normal", "end"),
-        f'  <line x1="0" y1="52" x2="{W}" y2="52" stroke="{MUTED}" stroke-opacity="0.4"/>',
-    ]
-    for r, row in enumerate(rows):
-        x_start = (W - len(row) * 118) / 2
-        for c, (rank, title, msg, bottom) in enumerate(row):
-            body.extend(_panel(x_start + c * 118, 64 + r * 118,
-                               rank, title, msg, bottom))
-    return svg_wrap(W, H, "\n".join(body))
-
-
-def main():
-    os.makedirs("stats", exist_ok=True)
-
-    user = api(f"/users/{USER}")
+def collect_snapshot(user, token):
+    if not token:
+        raise ValueError("Set GITHUB_TOKEN for live data, or use --snapshot stats/data.json.")
     repos = []
     page = 1
     while True:
-        batch = api(f"/users/{USER}/repos?per_page=100&page={page}")
-        repos.extend(batch)
+        batch = request_json(
+            f"/users/{user}/repos?type=owner&sort=full_name&per_page=100&page={page}", token
+        )
+        repos.extend(r for r in batch if not r["fork"] and not r["private"])
         if len(batch) < 100:
             break
         page += 1
-    owned = [r for r in repos if not r.get("fork")]
 
-    lang_bytes = {}
-    for r in owned:
-        langs = api(f"/repos/{r['full_name']}/languages", critical=False) or {}
-        for lang, b in langs.items():
-            lang_bytes[lang] = lang_bytes.get(lang, 0) + b
-    lang_items = sorted(lang_bytes.items(), key=lambda kv: kv[1], reverse=True)
+    def with_languages(repo):
+        return {
+            key: repo[key] for key in (
+                "name", "full_name", "html_url", "description", "language",
+                "stargazers_count", "forks_count",
+            )
+        } | {"languages": request_json(f"/repos/{repo['full_name']}/languages", token)}
 
-    def search_total(kind):
-        q = urllib.parse.quote(f"author:{USER} type:{kind}")
-        data = api(f"/search/issues?q={q}", critical=False) or {}
-        return data.get("total_count", 0)
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        repositories = list(pool.map(with_languages, repos))
+    response = request_json("/graphql", token, {"query": CAL_QUERY, "variables": {"login": user}})
+    owner = response["data"]["user"]
+    if not owner:
+        raise ValueError(f"GitHub user not found: {user}")
+    result = {
+        "schema": 1,
+        "user": user,
+        "sources": {
+            "repositories": f"{API}/users/{user}/repos",
+            "contributions": f"https://github.com/{user}?tab=overview",
+            "graphql": f"{API}/graphql",
+        },
+        "repositories": sorted(repositories, key=lambda r: r["name"]),
+        "contributions": owner["contributionsCollection"],
+    }
+    validate_snapshot(result)
+    return result
 
-    commits_data = api(
-        "/search/commits?q=" + urllib.parse.quote(f"author:{USER}"), critical=False
-    ) or {}
 
-    stars = sum(r.get("stargazers_count", 0) for r in owned)
-    commits = commits_data.get("total_count", 0)
-    prs = search_total("pr")
-    issues = search_total("issue")
+def validate_snapshot(data):
+    if data["schema"] != 1 or not data["user"]:
+        raise ValueError("Unsupported or missing snapshot schema/user.")
+    repos = data["repositories"]
+    missing = set(FEATURED_REPOS) - {r["name"] for r in repos}
+    if missing:
+        raise ValueError(f"Missing featured repositories: {', '.join(sorted(missing))}")
+    cc = data["contributions"]
+    counts = [cc[k] for k in (
+        "totalCommitContributions", "totalPullRequestContributions",
+        "totalIssueContributions", "totalPullRequestReviewContributions",
+    )]
+    for repo in repos:
+        counts.extend((repo["stargazers_count"], repo["forks_count"]))
+        counts.extend(repo["languages"].values())
+    cal = cc["contributionCalendar"]
+    days = [d for week in cal["weeks"] for d in week["contributionDays"]]
+    if not days:
+        raise ValueError("Contribution calendar is empty; refusing to overwrite cards.")
+    dates = [d["date"] for d in days]
+    if dates != sorted(set(dates)):
+        raise ValueError("Calendar dates must be unique and chronological.")
+    counts.extend(d["contributionCount"] for d in days)
+    counts.append(cal["totalContributions"])
+    if any(type(n) is not int or n < 0 for n in counts):
+        raise ValueError("Every API metric must be a nonnegative integer.")
+    if sum(d["contributionCount"] for d in days) != cal["totalContributions"]:
+        raise ValueError("Contribution calendar total does not match its daily counts.")
 
-    total_contribs, weeks = contribution_weeks()
-    tinfo = trophy_info()
 
-    repo_map = {r["name"]: r for r in owned}
+def fmt(number):
+    return f"{number:,}"
+
+
+def stats_svg(data, t):
+    repos = data["repositories"]
+    cc = data["contributions"]
+    columns = [
+        [("Stars", sum(r["stargazers_count"] for r in repos)),
+         ("Commits / yr", cc["totalCommitContributions"]),
+         ("Repos", len(repos))],
+        [("Forks", sum(r["forks_count"] for r in repos)),
+         ("PRs / yr", cc["totalPullRequestContributions"]),
+         ("Issues / yr", cc["totalIssueContributions"])],
+    ]
+    body = [text(20, 34, "GitHub overview", 20, t["CYAN"], 600)]
+    for col, rows in enumerate(columns):
+        x = 20 + col * 196
+        for row, (label, value) in enumerate(rows):
+            y = 72 + row * 36
+            body.extend([
+                text(x, y, label, 16, t["MUTED"]),
+                text(x + 164, y, fmt(value), 20, t["GREEN"], 600, "end"),
+            ])
+    return svg(400, 165, body, t, f"{data['user']}: GitHub overview",
+               "Stars, forks and repositories: public, owned, non-fork repositories. "
+               "Commits, pull requests and issues: GitHub's visible contributions in the last year.")
+
+
+def langs_svg(data, t):
+    totals = {}
+    for repo in data["repositories"]:
+        for lang, size in repo["languages"].items():
+            totals[lang] = totals.get(lang, 0) + size
+    items = sorted(totals.items(), key=lambda item: (-item[1], item[0]))
+    total = sum(totals.values())
+    rows = items[:3]
+    if len(items) > 3:
+        rows.append(("Other", sum(n for _, n in items[3:])))
+    body = [text(20, 34, "Languages by bytes", 20, t["CYAN"], 600)]
+    if not total:
+        body.append(text(20, 88, "No language bytes reported", 16, t["MUTED"]))
+    for i, (name, count) in enumerate(rows):
+        y = 66 + i * 28
+        label = "Notebook" if name == "Jupyter Notebook" else name
+        body.extend([
+            text(20, y, label, 16, t["TEXT"]),
+            f'<rect x="184" y="{y - 10}" width="112" height="8" rx="4" fill="{t["BORDER"]}"/>',
+            f'<rect x="184" y="{y - 10}" width="{112 * count / total:.2f}" '
+            f'height="8" rx="4" fill="{t["PURPLE"]}"/>',
+            text(380, y, f"{100 * count / total:.1f}%", 16, t["MUTED"], anchor="end"),
+        ])
+    return svg(400, 165, body, t, "Languages by repository bytes",
+               "GitHub Languages API; owned public non-fork repositories, "
+               "top three languages and all remaining languages grouped as Other. "
+               "Notebook means Jupyter Notebook; percentages are not proficiency scores.")
+
+
+ICON_PATHS = {
+    "code": "m5 3-4 5 4 5m6-10 4 5-4 5M9 1 7 15",
+    "chip": "M3 3h10v10H3zM6 0v3m4-3v3M6 13v3m4-3v3M0 6h3m-3 4h3m10-4h3m-3 4h3",
+    "api": "m9 1-6 8h5l-1 6 6-8H8z",
+    "layers": "m8 1 7 4-7 4-7-4zM1 8l7 4 7-4M1 11l7 4 7-4",
+    "data": "M2 4c0-4 12-4 12 0s-12 4-12 0v8c0 4 12 4 12 0V4M2 8c0 4 12 4 12 0",
+}
+
+
+def pin_svg(repo, spec, t):
+    body = [text(20, 36 + i * 28, line, 20, t["TEXT"], 600)
+            for i, line in enumerate(spec["title"])]
+    body.extend([
+        text(20, 96, spec["description"], 16, t["TEXT"]),
+        text(20, 124, spec["highlight"], 16, t["MUTED"]),
+    ])
+    for i, (icon, label) in enumerate(spec["stack"]):
+        x = 20 + i * 124
+        body.extend([
+            f'<path d="{ICON_PATHS[icon]}" transform="translate({x} 148)" '
+            f'stroke="{t["PURPLE"]}" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>',
+            text(x + 24, 162, label, 16, t["PURPLE"]),
+        ])
+    body.extend([
+        f'<path d="M20 180h360" stroke="{t["BORDER"]}" stroke-width="1"/>',
+        text(20, 208, f'{fmt(repo["stargazers_count"])} '
+             f'{"star" if repo["stargazers_count"] == 1 else "stars"}', 16, t["GREEN"], 600),
+        text(380, 208, f'{fmt(repo["forks_count"])} '
+             f'{"fork" if repo["forks_count"] == 1 else "forks"}', 16, t["MUTED"], anchor="end"),
+    ])
+    return svg(400, 228, body, t, repo["name"],
+               f'{spec["description"]}；{spec["highlight"]}。'
+               f'{repo["stargazers_count"]} stars, {repo["forks_count"]} forks. '
+               f'Source: {repo["html_url"]}')
+
+
+def contribution_weeks(data):
+    return [
+        (w["contributionDays"][0]["date"], sum(d["contributionCount"] for d in w["contributionDays"]))
+        for w in data["contributions"]["contributionCalendar"]["weeks"]
+        if w["contributionDays"]
+    ]
+
+
+def nice_max(value):
+    return max(4, math.ceil(value / 4) * 4)
+
+
+def activity_svg(data, t):
+    weeks = contribution_weeks(data)
+    total = data["contributions"]["contributionCalendar"]["totalContributions"]
+    x0, x1, y0, y1 = 48, 688, 76, 184
+    ceiling = nice_max(max((n for _, n in weeks), default=0))
+    points = [(x0 + (x1 - x0) * (i / (len(weeks) - 1) if len(weeks) > 1 else 0.5),
+               y1 - n / ceiling * (y1 - y0)) for i, (_, n) in enumerate(weeks)]
+    body = [
+        text(24, 36, "Weekly contributions", 20, t["CYAN"], 600),
+        text(688, 36, f"{fmt(total)} / year", 20, t["GREEN"], 600, "end"),
+    ]
+    for i in range(3):
+        y = y1 - (y1 - y0) * i / 2
+        body.extend([
+            f'<path d="M{x0} {y}H{x1}" stroke="{t["BORDER"]}" stroke-width="1"/>',
+            text(x0 - 12, y + 6, str(int(ceiling * i / 2)), 16, t["MUTED"], anchor="end"),
+        ])
+    if points:
+        coords = " ".join(f"{x:.2f},{y:.2f}" for x, y in points)
+        body.append(f'<polyline points="{coords}" stroke="{t["GREEN"]}" '
+                    'stroke-width="1" stroke-linejoin="round"/>')
+        if len(points) == 1:
+            body.append(f'<circle cx="{points[0][0]:.2f}" cy="{points[0][1]:.2f}" '
+                        f'r="3" fill="{t["GREEN"]}"/>')
+        for i in sorted({0, len(weeks) // 2, len(weeks) - 1}):
+            anchor = "start" if i == 0 else "end" if i == len(weeks) - 1 else "middle"
+            body.append(text(points[i][0], 216, weeks[i][0], 16, t["MUTED"], anchor=anchor))
+    return svg(720, 240, body, t, "Weekly contribution activity",
+               "Sum of contributionCalendar daily counts by GitHub calendar week; "
+               "first and last weeks may be partial. Contributions include more than commits.")
+
+
+def milestone(value):
+    reached = [n for n in (1, 10, 100, 1000, 10000) if value >= n]
+    return f"{fmt(reached[-1])}+" if reached else "—"
+
+
+def trophies_svg(data, t):
+    repos = data["repositories"]
+    cal = data["contributions"]["contributionCalendar"]
+    days = [d for w in cal["weeks"] for d in w["contributionDays"]]
+    entries = [
+        ("Stars received", sum(r["stargazers_count"] for r in repos)),
+        ("Public projects", len(repos)),
+        ("PRs / year", data["contributions"]["totalPullRequestContributions"]),
+        ("Active days / year", sum(d["contributionCount"] > 0 for d in days)),
+    ]
+    body = [text(24, 36, "Open-source milestones", 28, t["CYAN"], 600)]
+    for i, (label, value) in enumerate(entries):
+        x = 24 + i * 172
+        body.extend([
+            text(x, 84, milestone(value), 28, t["GREEN"], 600),
+            text(x, 116, f"{fmt(value)} recorded", 16, t["TEXT"]),
+            text(x, 144, label, 16, t["MUTED"]),
+        ])
+    return svg(720, 172, body, t, "Open-source milestones",
+               "Local thresholds: 1, 10, 100, 1000, 10000. These are not official "
+               "GitHub achievements, rankings, or measures of engineering ability.")
+
+
+def render(data):
+    validate_snapshot(data)
+    repos = {r["name"]: r for r in data["repositories"]}
     outputs = {}
-    for suffix, palette in THEMES.items():
-        use_theme(palette)
-        outputs[f"stats/stats{suffix}.svg"] = stats_svg(
-            stars, commits, user.get("public_repos", len(owned)),
-            sum(r.get("forks_count", 0) for r in owned), prs, issues,
-        )
-        outputs[f"stats/top-langs{suffix}.svg"] = langs_svg(lang_items)
-        if weeks:
-            outputs[f"stats/activity{suffix}.svg"] = activity_svg(
-                total_contribs, weeks)
-        if tinfo:
-            outputs[f"stats/trophies{suffix}.svg"] = trophies_svg(tinfo)
-        for name, blurb in FEATURED_REPOS:
-            if name in repo_map:
-                outputs[f"stats/pin-{name}{suffix}.svg"] = pin_svg(repo_map[name], blurb)
-            elif not suffix:
-                print(f"WARN: featured repo not found: {name}")
+    for suffix, theme in THEMES.items():
+        for name, build in (("stats", stats_svg), ("top-langs", langs_svg),
+                            ("activity", activity_svg), ("trophies", trophies_svg)):
+            outputs[f"{name}{suffix}.svg"] = build(data, theme).encode("utf-8")
+        for name, spec in FEATURED_REPOS.items():
+            outputs[f"pin-{name}{suffix}.svg"] = pin_svg(repos[name], spec, theme).encode("utf-8")
+    return outputs
 
-    for path, svg in outputs.items():
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(svg)
-        print(f"wrote {path} ({len(svg)} bytes)")
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--snapshot", type=Path, help="Replay an existing JSON snapshot without network access.")
+    args = parser.parse_args()
+    if args.snapshot:
+        data = json.loads(args.snapshot.read_text(encoding="utf-8"))
+    else:
+        data = collect_snapshot(os.environ.get("GITHUB_USER", "helloe365"), os.environ.get("GITHUB_TOKEN", ""))
+    outputs = render(data)  # Validate and render every card before writing anything.
+    output = ROOT / "stats"
+    output.mkdir(exist_ok=True)
+    for name, markup in outputs.items():
+        (output / name).write_bytes(markup)
+    (output / "data.json").write_bytes(
+        (json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
+    )
+    print(f"Wrote {len(outputs)} SVGs and stats/data.json for {data['user']}.")
 
 
 if __name__ == "__main__":

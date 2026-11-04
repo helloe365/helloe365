@@ -1,17 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif">
-  <rect width="495" height="195" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
-  <text x="25" y="38" font-size="18" fill="#1f2328" font-weight="600" text-anchor="start">helloe365's GitHub Stats</text>
-  <line x1="0" y1="52" x2="495" y2="52" stroke="#8c959f" stroke-opacity="0.4"/>
-  <text x="25" y="88" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">⭐  Total Stars</text>
-  <text x="235" y="88" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">20</text>
-  <text x="25" y="125" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">💬  Total Commits</text>
-  <text x="235" y="125" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">169</text>
-  <text x="25" y="162" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">📦  Total Repos</text>
-  <text x="235" y="162" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">18</text>
-  <text x="265" y="88" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">🍴  Total Forks</text>
-  <text x="470" y="88" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">7</text>
-  <text x="265" y="125" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">🔀  Total PRs</text>
-  <text x="470" y="125" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">7</text>
-  <text x="265" y="162" font-size="13" fill="#59636e" font-weight="normal" text-anchor="start">📋  Total Issues</text>
-  <text x="470" y="162" font-size="15" fill="#1f2328" font-weight="600" text-anchor="end">3</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 165" width="400" height="165" fill="none" role="img" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif">
+<title>helloe365: GitHub overview</title>
+<desc>Stars, forks and repositories: public, owned, non-fork repositories. Commits, pull requests and issues: GitHub&#x27;s visible contributions in the last year.</desc>
+<rect x="0.5" y="0.5" width="399" height="164" rx="12" fill="#ffffff" stroke="#e3e8f0" stroke-width="1"/>
+<text x="20" y="34" font-size="20" fill="#217594" font-weight="600" text-anchor="start">GitHub overview</text>
+<text x="20" y="72" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="start">Stars</text>
+<text x="184" y="72" font-size="20" fill="#48752c" font-weight="600" text-anchor="end">20</text>
+<text x="20" y="108" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="start">Commits / yr</text>
+<text x="184" y="108" font-size="20" fill="#48752c" font-weight="600" text-anchor="end">168</text>
+<text x="20" y="144" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="start">Repos</text>
+<text x="184" y="144" font-size="20" fill="#48752c" font-weight="600" text-anchor="end">18</text>
+<text x="216" y="72" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="start">Forks</text>
+<text x="380" y="72" font-size="20" fill="#48752c" font-weight="600" text-anchor="end">7</text>
+<text x="216" y="108" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="start">PRs / yr</text>
+<text x="380" y="108" font-size="20" fill="#48752c" font-weight="600" text-anchor="end">6</text>
+<text x="216" y="144" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="start">Issues / yr</text>
+<text x="380" y="144" font-size="20" fill="#48752c" font-weight="600" text-anchor="end">3</text>
 </svg>
