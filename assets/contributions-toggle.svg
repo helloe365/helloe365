@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 96" width="600" height="96" fill="none" role="img" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif">
+<title>展开贡献轨迹与里程碑</title>
+<desc>点击展开或收起 3D 贡献图、每周活动、开源里程碑和贡献贪吃蛇。</desc>
+<rect x="0.5" y="0.5" width="599" height="95" rx="12" fill="#1a1b27" stroke="#2a2e45" stroke-width="1"/>
+<path d="M16 24v48" stroke="#7dcfff" stroke-width="1"/>
+<text x="32" y="43" font-size="32" fill="#7dcfff" font-weight="700" text-anchor="start">展开贡献轨迹与里程碑</text>
+<text x="32" y="73" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="start">CONTRIBUTIONS / ACTIVITY / MILESTONES</text>
+<circle cx="548" cy="48" r="24" fill="#7dcfff" opacity="0.08"/>
+<circle cx="548" cy="48" r="24" stroke="#7dcfff" stroke-width="1"/>
+<path d="m538 44 10 10 10-10" stroke="#7dcfff" stroke-width="1"/>
+</svg>

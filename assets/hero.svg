@@ -1,17 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 216" width="720" height="216" fill="none" role="img" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 228" width="720" height="228" fill="none" role="img" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif">
 <title>hello2world / helloe365</title>
-<desc>湖南大学本科在读，人工智能与机器人方向，长沙。构建可追溯的 AI 工具。</desc>
-<rect x="0.5" y="0.5" width="719" height="215" rx="12" fill="#0b0d17" stroke="#2a2e45" stroke-width="1"/>
-<text x="32" y="40" font-size="16" fill="#bb9af7" font-weight="400" text-anchor="start" letter-spacing="0.08em">HELLOE365 / CHANGSHA</text>
+<desc>湖南大学硕士研究生在读，人工智能与机器人方向，长沙。构建可追溯的 AI 工具。</desc>
+<rect x="0.5" y="0.5" width="719" height="227" rx="12" fill="#0b0d17" stroke="#2a2e45" stroke-width="1"/>
+<circle cx="620" cy="116" r="100" fill="#7dcfff" opacity="0.025"/>
+<circle cx="620" cy="116" r="76" fill="#7dcfff" opacity="0.035"/>
+<circle cx="660" cy="168" r="48" fill="#bb9af7" opacity="0.045"/>
+<path d="M16 44V16h28m632 0h28v28M16 184v28h28m632 0h28v-28" stroke="#7dcfff" stroke-width="1" opacity="0.55"/>
+<text x="32" y="40" font-size="16" fill="#bb9af7" font-weight="400" text-anchor="start" letter-spacing="0.08em">HELLOE365 / GRADUATE STUDENT</text>
 <text x="32" y="100" font-size="44" fill="#c0caf5" font-weight="700" text-anchor="start">hello2world</text>
-<text x="32" y="140" font-size="16" fill="#7dcfff" font-weight="600" text-anchor="start">构建可追溯的 AI 工具</text>
-<text x="32" y="184" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="start">湖南大学 · 人工智能与机器人方向 · 本科在读</text>
-<rect x="552" y="48" width="136" height="36" rx="12" fill="#1a1b27" stroke="#2a2e45" stroke-width="1"/>
-<text x="620" y="72" font-size="16" fill="#7dcfff" font-weight="500" text-anchor="middle" letter-spacing="0.08em">SOURCE</text>
-<path d="M620 84v20m-4-4 4 4 4-4" stroke="#bb9af7" stroke-width="1"/>
-<rect x="552" y="104" width="136" height="36" rx="12" fill="#1a1b27" stroke="#2a2e45" stroke-width="1"/>
-<text x="620" y="128" font-size="16" fill="#7dcfff" font-weight="500" text-anchor="middle" letter-spacing="0.08em">RETRIEVE</text>
-<path d="M620 140v20m-4-4 4 4 4-4" stroke="#bb9af7" stroke-width="1"/>
-<rect x="552" y="160" width="136" height="36" rx="12" fill="#1a1b27" stroke="#2a2e45" stroke-width="1"/>
-<text x="620" y="184" font-size="16" fill="#7dcfff" font-weight="500" text-anchor="middle" letter-spacing="0.08em">ANSWER</text>
+<path d="M32 116h96m8 0h40m8 0h16" stroke="#7dcfff" stroke-width="1"/>
+<text x="32" y="148" font-size="16" fill="#7dcfff" font-weight="600" text-anchor="start">构建可追溯的 AI 工具</text>
+<text x="32" y="184" font-size="16" fill="#c0caf5" font-weight="600" text-anchor="start">湖南大学 · 硕士研究生在读</text>
+<text x="32" y="208" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="start">人工智能与机器人方向 · 长沙</text>
+<rect x="548" y="40" width="144" height="44" rx="12" stroke="#7dcfff" stroke-width="1" opacity="0.14"><animate attributeName="opacity" values="0.14;0.6;0.14" begin="0.0s" dur="2s" repeatCount="1" fill="freeze"/></rect>
+<rect x="552" y="44" width="136" height="36" rx="12" fill="#1a1b27" stroke="#7dcfff" stroke-opacity="0.5" stroke-width="1"/>
+<text x="620" y="68" font-size="16" fill="#7dcfff" font-weight="500" text-anchor="middle" letter-spacing="0.08em">SOURCE</text>
+<path d="M620 80v20m-4-4 4 4 4-4" stroke="#bb9af7" stroke-width="1"/>
+<circle cx="620" cy="84" r="3" fill="#7dcfff" opacity="0"><animate attributeName="opacity" values="0;1;1;0" begin="0.4s" dur="1.6s" repeatCount="1" fill="freeze"/><animate attributeName="cy" from="84" to="96" begin="0.4s" dur="1.6s" repeatCount="1" fill="freeze"/></circle>
+<rect x="548" y="96" width="144" height="44" rx="12" stroke="#7dcfff" stroke-width="1" opacity="0.14"><animate attributeName="opacity" values="0.14;0.6;0.14" begin="0.8s" dur="2s" repeatCount="1" fill="freeze"/></rect>
+<rect x="552" y="100" width="136" height="36" rx="12" fill="#1a1b27" stroke="#7dcfff" stroke-opacity="0.5" stroke-width="1"/>
+<text x="620" y="124" font-size="16" fill="#7dcfff" font-weight="500" text-anchor="middle" letter-spacing="0.08em">RETRIEVE</text>
+<path d="M620 136v20m-4-4 4 4 4-4" stroke="#bb9af7" stroke-width="1"/>
+<circle cx="620" cy="140" r="3" fill="#7dcfff" opacity="0"><animate attributeName="opacity" values="0;1;1;0" begin="1.2s" dur="1.6s" repeatCount="1" fill="freeze"/><animate attributeName="cy" from="140" to="152" begin="1.2s" dur="1.6s" repeatCount="1" fill="freeze"/></circle>
+<rect x="548" y="152" width="144" height="44" rx="12" stroke="#7dcfff" stroke-width="1" opacity="0.14"><animate attributeName="opacity" values="0.14;0.6;0.14" begin="1.6s" dur="2s" repeatCount="1" fill="freeze"/></rect>
+<rect x="552" y="156" width="136" height="36" rx="12" fill="#1a1b27" stroke="#7dcfff" stroke-opacity="0.5" stroke-width="1"/>
+<text x="620" y="180" font-size="16" fill="#7dcfff" font-weight="500" text-anchor="middle" letter-spacing="0.08em">ANSWER</text>
 </svg>

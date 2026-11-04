@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the four profile illustrations, offline and byte-for-byte reproducibly."""
+"""Generate profile illustrations, offline and byte-for-byte reproducibly."""
 import argparse
 from html import escape
 import json
@@ -51,22 +51,41 @@ def svg(w, h, body, theme, title, description="", surface="CARD"):
 
 def hero_svg(t):
     body = [
-        text(32, 40, "HELLOE365 / CHANGSHA", 16, t["PURPLE"], label=True),
+        # Layered translucent shapes give the circuit a glow without filters/IDs.
+        f'<circle cx="620" cy="116" r="100" fill="{t["CYAN"]}" opacity="0.025"/>',
+        f'<circle cx="620" cy="116" r="76" fill="{t["CYAN"]}" opacity="0.035"/>',
+        f'<circle cx="660" cy="168" r="48" fill="{t["PURPLE"]}" opacity="0.045"/>',
+        f'<path d="M16 44V16h28m632 0h28v28M16 184v28h28m632 0h28v-28" '
+        f'stroke="{t["CYAN"]}" stroke-width="1" opacity="0.55"/>',
+        text(32, 40, "HELLOE365 / GRADUATE STUDENT", 16, t["PURPLE"], label=True),
         text(32, 100, "hello2world", 44, t["TEXT"], 700),
-        text(32, 140, "构建可追溯的 AI 工具", 16, t["CYAN"], 600),
-        text(32, 184, "湖南大学 · 人工智能与机器人方向 · 本科在读", 16, t["MUTED"]),
+        f'<path d="M32 116h96m8 0h40m8 0h16" '
+        f'stroke="{t["CYAN"]}" stroke-width="1"/>',
+        text(32, 148, "构建可追溯的 AI 工具", 16, t["CYAN"], 600),
+        text(32, 184, "湖南大学 · 硕士研究生在读", 16, t["TEXT"], 600),
+        text(32, 208, "人工智能与机器人方向 · 长沙", 16, t["MUTED"]),
     ]
-    # A source-to-answer diagram drawn from this profile's RAG/evidence work.
+    # Small finite SMIL motion: never delay text or keep a background loop running.
     for i, label in enumerate(("SOURCE", "RETRIEVE", "ANSWER")):
-        y = 48 + i * 56
+        y = 44 + i * 56
+        body.append(f'<rect x="548" y="{y - 4}" width="144" height="44" rx="12" '
+                    f'stroke="{t["CYAN"]}" stroke-width="1" opacity="0.14">'
+                    '<animate attributeName="opacity" values="0.14;0.6;0.14" '
+                    f'begin="{i * 0.8}s" dur="2s" repeatCount="1" fill="freeze"/></rect>')
         body.append(f'<rect x="552" y="{y}" width="136" height="36" rx="12" '
-                    f'fill="{t["CARD"]}" stroke="{t["BORDER"]}" stroke-width="1"/>')
+                    f'fill="{t["CARD"]}" stroke="{t["CYAN"]}" stroke-opacity="0.5" stroke-width="1"/>')
         body.append(text(620, y + 24, label, 16, t["CYAN"], 500, "middle", True))
         if i < 2:
             body.append(f'<path d="M620 {y + 36}v20m-4-4 4 4 4-4" '
                         f'stroke="{t["PURPLE"]}" stroke-width="1"/>')
-    return svg(W, 216, body, t, "hello2world / helloe365",
-               "湖南大学本科在读，人工智能与机器人方向，长沙。构建可追溯的 AI 工具。", "BG")
+            body.append(f'<circle cx="620" cy="{y + 40}" r="3" fill="{t["CYAN"]}" opacity="0">'
+                        '<animate attributeName="opacity" values="0;1;1;0" '
+                        f'begin="{0.4 + i * 0.8:.1f}s" dur="1.6s" repeatCount="1" fill="freeze"/>'
+                        '<animate attributeName="cy" '
+                        f'from="{y + 40}" to="{y + 52}" begin="{0.4 + i * 0.8:.1f}s" '
+                        'dur="1.6s" repeatCount="1" fill="freeze"/></circle>')
+    return svg(W, 228, body, t, "hello2world / helloe365",
+               "湖南大学硕士研究生在读，人工智能与机器人方向，长沙。构建可追溯的 AI 工具。", "BG")
 
 
 def terminal_svg(t):
@@ -74,7 +93,7 @@ def terminal_svg(t):
         text(24, 28, "helloe365 / about", 16, t["MUTED"]),
         f'<path d="M1 44h718" stroke="{t["BORDER"]}" stroke-width="1"/>',
         text(24, 76, "$ whoami", 16, t["CYAN"], 600),
-        text(24, 100, "hello2world · Hunan University · Undergraduate", 16, t["TEXT"]),
+        text(24, 100, "hello2world · Hunan University · Master's Student", 16, t["TEXT"]),
         text(24, 140, "$ cat focus", 16, t["CYAN"], 600),
         text(24, 164, "可追溯的 AI 应用 / 可复现的工程流程", 16, t["TEXT"]),
         text(24, 204, "$ pwd", 16, t["CYAN"], 600),
@@ -85,7 +104,19 @@ def terminal_svg(t):
         'repeatCount="3" fill="freeze"/></rect>',
     ]
     return svg(W, 252, body, t, "About hello2world",
-               "湖南大学人工智能与机器人方向本科生，长沙；关注可追溯的 AI 应用与可复现的工程流程。")
+               "湖南大学人工智能与机器人方向硕士研究生在读，长沙；关注可追溯的 AI 应用与可复现的工程流程。")
+
+
+def contributions_toggle_svg(t):
+    """A full-width summary label; its title stays readable when scaled down."""
+    return svg(600, 96, [
+        f'<path d="M16 24v48" stroke="{t["CYAN"]}" stroke-width="1"/>',
+        text(32, 43, "展开贡献轨迹与里程碑", 32, t["CYAN"], 700),
+        text(32, 73, "CONTRIBUTIONS / ACTIVITY / MILESTONES", 16, t["MUTED"]),
+        f'<circle cx="548" cy="48" r="24" fill="{t["CYAN"]}" opacity="0.08"/>',
+        f'<circle cx="548" cy="48" r="24" stroke="{t["CYAN"]}" stroke-width="1"/>',
+        f'<path d="m538 44 10 10 10-10" stroke="{t["CYAN"]}" stroke-width="1"/>',
+    ], t, "展开贡献轨迹与里程碑", "点击展开或收起 3D 贡献图、每周活动、开源里程碑和贡献贪吃蛇。")
 
 
 def divider_svg(t):
@@ -103,7 +134,8 @@ def footer_svg(t):
 
 
 BUILDERS = {"hero": hero_svg, "terminal": terminal_svg,
-            "divider": divider_svg, "footer": footer_svg}
+            "divider": divider_svg, "footer": footer_svg,
+            "contributions-toggle": contributions_toggle_svg}
 
 
 def contribution_settings():

@@ -4,10 +4,10 @@
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./assets/hero-light.svg">
-  <img src="./assets/hero.svg" alt="hello2world（@helloe365）｜湖南大学人工智能与机器人方向本科在读，长沙。构建可追溯的 AI 工具。" width="100%">
+  <img src="./assets/hero.svg" alt="hello2world（@helloe365）｜湖南大学人工智能与机器人方向硕士研究生在读，长沙。构建可追溯的 AI 工具。" width="100%">
 </picture>
 
-我是 **hello2world**，湖南大学本科在读，在长沙探索 AI 应用与数据安全。
+我是 **hello2world**，湖南大学**硕士研究生在读**，在长沙探索 AI 应用与数据安全。
 
 <p align="center">
   <a href="https://github.com/helloe365/CrackPDFPassword">CrackPDFPassword</a> ·
@@ -27,10 +27,10 @@
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./assets/terminal-light.svg">
-  <img src="./assets/terminal.svg" alt="终端简介：湖南大学人工智能与机器人方向本科生，位于长沙；关注可追溯的 AI 应用和可复现的工程流程。" width="100%">
+  <img src="./assets/terminal.svg" alt="终端简介：湖南大学人工智能与机器人方向硕士研究生在读，位于长沙；关注可追溯的 AI 应用和可复现的工程流程。" width="100%">
 </picture>
 
-- **身份** — 湖南大学 · 人工智能与机器人方向 · 本科在读，常驻长沙。
+- **身份** — 湖南大学 · 人工智能与机器人方向 · 硕士研究生在读，常驻长沙。
 - **方向** — 让回答有来源、实验可复现；从检索问答延伸到数据安全。
 - **正在做** — 迭代 [RagAgent](https://github.com/helloe365/RagAgent) 的知识库流程，让文档更新更可靠；完善 [CrackPDFPassword](https://github.com/helloe365/CrackPDFPassword) 的可恢复任务流程，让长任务中断后能继续。
 - **交流** — 欢迎讨论检索系统、实验复现与开源工具，联系方式见 [Contact](#-contact)。
@@ -207,7 +207,12 @@
 <sub>仓库指标来自 GitHub API；提交、PR、issue 为最近一年贡献。语言按代码字节计，不代表熟练度。[查看数据快照](./stats/data.json)。</sub>
 
 <details>
-<summary>展开贡献轨迹与里程碑</summary>
+<summary>
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./assets/contributions-toggle-light.svg">
+  <img src="./assets/contributions-toggle.svg" alt="展开贡献轨迹与里程碑（点击展开或收起）" width="100%">
+</picture>
+</summary>
 
 ### Contribution City
 

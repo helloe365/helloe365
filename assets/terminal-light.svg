@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 252" width="720" height="252" fill="none" role="img" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif">
 <title>About hello2world</title>
-<desc>湖南大学人工智能与机器人方向本科生，长沙；关注可追溯的 AI 应用与可复现的工程流程。</desc>
+<desc>湖南大学人工智能与机器人方向硕士研究生在读，长沙；关注可追溯的 AI 应用与可复现的工程流程。</desc>
 <rect x="0.5" y="0.5" width="719" height="251" rx="12" fill="#ffffff" stroke="#e3e8f0" stroke-width="1"/>
 <text x="24" y="28" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="start">helloe365 / about</text>
 <path d="M1 44h718" stroke="#e3e8f0" stroke-width="1"/>
 <text x="24" y="76" font-size="16" fill="#217594" font-weight="600" text-anchor="start">$ whoami</text>
-<text x="24" y="100" font-size="16" fill="#1a2233" font-weight="400" text-anchor="start">hello2world · Hunan University · Undergraduate</text>
+<text x="24" y="100" font-size="16" fill="#1a2233" font-weight="400" text-anchor="start">hello2world · Hunan University · Master&#x27;s Student</text>
 <text x="24" y="140" font-size="16" fill="#217594" font-weight="600" text-anchor="start">$ cat focus</text>
 <text x="24" y="164" font-size="16" fill="#1a2233" font-weight="400" text-anchor="start">可追溯的 AI 应用 / 可复现的工程流程</text>
 <text x="24" y="204" font-size="16" fill="#217594" font-weight="600" text-anchor="start">$ pwd</text>
