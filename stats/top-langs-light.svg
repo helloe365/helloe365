@@ -5,18 +5,18 @@
 <text x="20" y="34" font-size="20" fill="#217594" font-weight="600" text-anchor="start">Languages by bytes</text>
 <text x="20" y="66" font-size="16" fill="#1a2233" font-weight="400" text-anchor="start">Python</text>
 <rect x="184" y="56" width="112" height="8" rx="4" fill="#e3e8f0"/>
-<rect x="184" y="56" width="90.95" height="8" rx="4" fill="#7256a8"/>
-<text x="380" y="66" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="end">81.2%</text>
+<rect x="184" y="56" width="91.17" height="8" rx="4" fill="#7256a8"/>
+<text x="380" y="66" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="end">81.4%</text>
 <text x="20" y="94" font-size="16" fill="#1a2233" font-weight="400" text-anchor="start">TypeScript</text>
 <rect x="184" y="84" width="112" height="8" rx="4" fill="#e3e8f0"/>
-<rect x="184" y="84" width="7.84" height="8" rx="4" fill="#7256a8"/>
-<text x="380" y="94" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="end">7.0%</text>
+<rect x="184" y="84" width="7.76" height="8" rx="4" fill="#7256a8"/>
+<text x="380" y="94" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="end">6.9%</text>
 <text x="20" y="122" font-size="16" fill="#1a2233" font-weight="400" text-anchor="start">JavaScript</text>
 <rect x="184" y="112" width="112" height="8" rx="4" fill="#e3e8f0"/>
-<rect x="184" y="112" width="4.31" height="8" rx="4" fill="#7256a8"/>
+<rect x="184" y="112" width="4.27" height="8" rx="4" fill="#7256a8"/>
 <text x="380" y="122" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="end">3.8%</text>
 <text x="20" y="150" font-size="16" fill="#1a2233" font-weight="400" text-anchor="start">Other</text>
 <rect x="184" y="140" width="112" height="8" rx="4" fill="#e3e8f0"/>
-<rect x="184" y="140" width="8.90" height="8" rx="4" fill="#7256a8"/>
+<rect x="184" y="140" width="8.81" height="8" rx="4" fill="#7256a8"/>
 <text x="380" y="150" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="end">7.9%</text>
 </svg>

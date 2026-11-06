@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 228" width="400" height="228" fill="none" role="img" font-family="-apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif">
 <title>AdaptiveFinancialFraudDetectionSystem</title>
-<desc>识别不平衡交易数据中的欺诈；VAE 增强少数类，DevNet 检测。0 stars, 0 forks. Source: https://github.com/helloe365/AdaptiveFinancialFraudDetectionSystem</desc>
+<desc>识别不平衡交易数据中的欺诈；VAE 增强少数类，DevNet 检测。1 stars, 0 forks. Source: https://github.com/helloe365/AdaptiveFinancialFraudDetectionSystem</desc>
 <rect x="0.5" y="0.5" width="399" height="227" rx="12" fill="#ffffff" stroke="#e3e8f0" stroke-width="1"/>
 <text x="20" y="36" font-size="20" fill="#1a2233" font-weight="600" text-anchor="start">AdaptiveFinancial</text>
 <text x="20" y="64" font-size="20" fill="#1a2233" font-weight="600" text-anchor="start">FraudDetectionSystem</text>
@@ -13,6 +13,6 @@
 <path d="M2 4c0-4 12-4 12 0s-12 4-12 0v8c0 4 12 4 12 0V4M2 8c0 4 12 4 12 0" transform="translate(268 148)" stroke="#7256a8" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="292" y="162" font-size="16" fill="#7256a8" font-weight="400" text-anchor="start">VAE</text>
 <path d="M20 180h360" stroke="#e3e8f0" stroke-width="1"/>
-<text x="20" y="208" font-size="16" fill="#48752c" font-weight="600" text-anchor="start">0 stars</text>
+<text x="20" y="208" font-size="16" fill="#48752c" font-weight="600" text-anchor="start">1 star</text>
 <text x="380" y="208" font-size="16" fill="#5c6b84" font-weight="400" text-anchor="end">0 forks</text>
 </svg>
