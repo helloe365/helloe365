@@ -3,15 +3,15 @@
 <desc>Sum of contributionCalendar daily counts by GitHub calendar week; first and last weeks may be partial. Contributions include more than commits.</desc>
 <rect x="0.5" y="0.5" width="719" height="239" rx="12" fill="#1a1b27" stroke="#2a2e45" stroke-width="1"/>
 <text x="24" y="36" font-size="20" fill="#7dcfff" font-weight="600" text-anchor="start">Weekly contributions</text>
-<text x="688" y="36" font-size="20" fill="#9ece6a" font-weight="600" text-anchor="end">200 / year</text>
+<text x="688" y="36" font-size="20" fill="#9ece6a" font-weight="600" text-anchor="end">198 / year</text>
 <path d="M48 184.0H688" stroke="#2a2e45" stroke-width="1"/>
 <text x="36" y="190.0" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">0</text>
 <path d="M48 130.0H688" stroke="#2a2e45" stroke-width="1"/>
 <text x="36" y="136.0" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">28</text>
 <path d="M48 76.0H688" stroke="#2a2e45" stroke-width="1"/>
 <text x="36" y="82.0" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">56</text>
-<polyline points="48.00,184.00 60.31,184.00 72.62,184.00 84.92,184.00 97.23,184.00 109.54,184.00 121.85,184.00 134.15,184.00 146.46,184.00 158.77,184.00 171.08,184.00 183.38,184.00 195.69,180.14 208.00,184.00 220.31,153.14 232.62,180.14 244.92,184.00 257.23,166.64 269.54,158.93 281.85,184.00 294.15,184.00 306.46,178.21 318.77,143.50 331.08,184.00 343.38,178.21 355.69,151.21 368.00,174.36 380.31,184.00 392.62,184.00 404.92,184.00 417.23,184.00 429.54,184.00 441.85,184.00 454.15,182.07 466.46,182.07 478.77,182.07 491.08,184.00 503.38,176.29 515.69,182.07 528.00,79.86 540.31,160.86 552.62,184.00 564.92,182.07 577.23,158.93 589.54,172.43 601.85,184.00 614.15,180.14 626.46,184.00 638.77,184.00 651.08,168.57 663.38,174.36 675.69,184.00 688.00,184.00" stroke="#9ece6a" stroke-width="1" stroke-linejoin="round"/>
-<text x="48.0" y="216" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="start">2025-11-16</text>
-<text x="368.0" y="216" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="middle">2026-05-17</text>
-<text x="688.0" y="216" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">2026-11-15</text>
+<polyline points="48.00,184.00 60.31,184.00 72.62,184.00 84.92,184.00 97.23,184.00 109.54,184.00 121.85,184.00 134.15,184.00 146.46,184.00 158.77,184.00 171.08,184.00 183.38,180.14 195.69,184.00 208.00,153.14 220.31,180.14 232.62,184.00 244.92,168.57 257.23,158.93 269.54,184.00 281.85,184.00 294.15,178.21 306.46,143.50 318.77,184.00 331.08,178.21 343.38,151.21 355.69,176.29 368.00,184.00 380.31,184.00 392.62,184.00 404.92,184.00 417.23,184.00 429.54,184.00 441.85,182.07 454.15,182.07 466.46,182.07 478.77,184.00 491.08,176.29 503.38,182.07 515.69,79.86 528.00,160.86 540.31,184.00 552.62,182.07 564.92,158.93 577.23,172.43 589.54,184.00 601.85,180.14 614.15,184.00 626.46,184.00 638.77,168.57 651.08,174.36 663.38,184.00 675.69,184.00 688.00,184.00" stroke="#9ece6a" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="216" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="start">2025-11-23</text>
+<text x="368.0" y="216" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="middle">2026-05-24</text>
+<text x="688.0" y="216" font-size="16" fill="#a9b1d6" font-weight="400" text-anchor="end">2026-11-22</text>
 </svg>

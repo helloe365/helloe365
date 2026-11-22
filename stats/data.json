@@ -1,40 +1,8 @@
 {
   "contributions": {
     "contributionCalendar": {
-      "totalContributions": 200,
+      "totalContributions": 198,
       "weeks": [
-        {
-          "contributionDays": [
-            {
-              "contributionCount": 0,
-              "date": "2025-11-16"
-            },
-            {
-              "contributionCount": 0,
-              "date": "2025-11-17"
-            },
-            {
-              "contributionCount": 0,
-              "date": "2025-11-18"
-            },
-            {
-              "contributionCount": 0,
-              "date": "2025-11-19"
-            },
-            {
-              "contributionCount": 0,
-              "date": "2025-11-20"
-            },
-            {
-              "contributionCount": 0,
-              "date": "2025-11-21"
-            },
-            {
-              "contributionCount": 0,
-              "date": "2025-11-22"
-            }
-          ]
-        },
         {
           "contributionDays": [
             {
@@ -554,7 +522,7 @@
               "date": "2026-03-15"
             },
             {
-              "contributionCount": 1,
+              "contributionCount": 0,
               "date": "2026-03-16"
             },
             {
@@ -850,7 +818,7 @@
               "date": "2026-05-19"
             },
             {
-              "contributionCount": 2,
+              "contributionCount": 1,
               "date": "2026-05-20"
             },
             {
@@ -1698,10 +1666,18 @@
               "date": "2026-11-21"
             }
           ]
+        },
+        {
+          "contributionDays": [
+            {
+              "contributionCount": 0,
+              "date": "2026-11-22"
+            }
+          ]
         }
       ]
     },
-    "totalCommitContributions": 172,
+    "totalCommitContributions": 170,
     "totalIssueContributions": 3,
     "totalPullRequestContributions": 6,
     "totalPullRequestReviewContributions": 1
